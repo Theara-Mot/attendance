@@ -118,12 +118,12 @@ void dispose() {
     },
     {
       'icon': 'requst_leave',
-      'name': 'my_teamates',
+      'name': 'my_department',
       'page':const MyTeam()
     }];
     about = [
     {
-      'icon': 'news',
+      'icon': 'degree',
       'name': 'news',
       'page':const News()
     },
@@ -138,7 +138,7 @@ void dispose() {
       'page':const MyTeam()
     },
     {
-      'icon': 'website',
+      'icon': 'social_media',
       'name': 'website',
       'page':const MyTeam()
     },
@@ -148,13 +148,13 @@ void dispose() {
       'page':const MyTeam()
     },
     {
-      'icon': 'requst_leave',
+      'icon': 'social_media',
       'name': 'about',
       'page':const MyTeam()
     },
     {
-      'icon': 'requst_leave',
-      'name': 'contact',
+      'icon': 'top_student',
+      'name': 'Director',
       'page':const MyTeam()
     }];
     return Scaffold(
@@ -367,79 +367,84 @@ void dispose() {
               ),
             ),
             SizedBox(height:AppDimension.height20),
-           Container(
+            Container(
               width: double.infinity,
               padding: EdgeInsets.all(AppDimension.margin8),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(AppDimension.radius8),
               ),
-              child: GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  mainAxisSpacing:8.0,
-                  crossAxisSpacing: 8.0,
-                    childAspectRatio:1.1
-                ),
-                itemCount: about.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return GestureDetector(
-                    onTap: (){
-                      Navigator.of(context, rootNavigator: true).push(
-                      MaterialPageRoute( builder: (BuildContext context) { return about[index]['page']; }, ));
-                    },
-                    child: Container(
-                      padding: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: AppColor.primaryColor.withOpacity(0.2),
-                            spreadRadius: 1,
-                            blurRadius: 2,
-                            offset:const Offset(0, 0),
-                          ),
-                        ],
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(
-                          color: AppColor.primaryColor.withOpacity(0.3),
-                          width: 1.0,
-                        ),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Lottie.asset(
-                            'assets/static_images/${about[index]['icon']}.json',
-                            width: AppDimension.width10*5.5,
-                            height: AppDimension.height10*5.5,
-                            animate:true,
-                            repeat: false,
-                            reverse: true
-                          ),
-                          SizedBox(height: AppDimension.height10/2),
-                          SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Text(
-                            about[index]['name'].toString().tr(),
-                            style: GoogleFonts.ubuntu(
-                              fontSize: AppDimension.font15,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.black.withOpacity(0.6),
+              child: LayoutBuilder(
+                builder: (BuildContext context, BoxConstraints constraints) {
+                  return GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3, // Change crossAxisCount to 1 if index == 6
+                      mainAxisSpacing: 8.0,
+                      crossAxisSpacing: 8.0,
+                      childAspectRatio: 1.1,
+                    ),
+                    itemCount: about.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.of(context, rootNavigator: true).push(
+                            MaterialPageRoute(builder: (BuildContext context) {
+                              return about[index]['page'];
+                            }),
+                          );
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                color: AppColor.primaryColor.withOpacity(0.2),
+                                spreadRadius: 1,
+                                blurRadius: 2,
+                                offset: const Offset(0, 0),
+                              ),
+                            ],
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                              color: AppColor.primaryColor.withOpacity(0.3),
+                              width: 1.0,
                             ),
                           ),
-                          )
-                        ],
-                      ),
-                    ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Lottie.asset(
+                                'assets/static_images/${about[index]['icon']}.json',
+                                width: 55,
+                                height: 55,
+                                repeat: false,
+                              ),
+                              SizedBox(height: AppDimension.height10 / 2),
+                              SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Text(
+                                  about[index]['name'].toString().tr(),
+                                  style: GoogleFonts.ubuntu(
+                                    fontSize: AppDimension.font15,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black.withOpacity(0.6),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
                   );
                 },
               ),
-            ),
-          ]),
+            )
+            ]),
         )
       ),
     );
