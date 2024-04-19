@@ -8,6 +8,7 @@ import 'package:attendance/const/app_font.dart';
 import 'package:attendance/const/app_variable.dart';
 import 'package:attendance/screen/both_use.dart/add_leave.dart';
 import 'package:attendance/screen/both_use.dart/history.dart';
+import 'package:attendance/screen/both_use.dart/main_degree.dart';
 import 'package:attendance/screen/both_use.dart/my_team.dart';
 import 'package:attendance/screen/both_use.dart/qr_code.dart';
 import 'package:attendance/screen/both_use.dart/todo_list.dart';
@@ -122,28 +123,28 @@ void dispose() {
     }];
     about = [
     {
-      'icon': 'requst_leave',
+      'icon': 'news',
       'name': 'news',
       'page':const News()
     },
     {
-      'icon': 'requst_leave',
+      'icon': 'degree',
       'name': 'main_degree',
-      'page':const MyTeam()
+      'page':const MainDegree()
     },
     {
-      'icon': 'requst_leave',
+      'icon': 'social_media',
       'name': 'social_media',
       'page':const MyTeam()
     },
     {
-      'icon': 'requst_leave',
+      'icon': 'website',
       'name': 'website',
       'page':const MyTeam()
     },
     {
-      'icon': 'requst_leave',
-      'name': 'top_student',
+      'icon': 'top_student',
+      'name':'top_student',
       'page':const MyTeam()
     },
     {
@@ -212,7 +213,7 @@ void dispose() {
             builder: (context, snapshot) {
               final dateTime = snapshot.data;
               final formattedDateTime = dateTime != null
-              ? DateFormat('EEEE, dd-MM-yyyy hh:mm:ss a').format(dateTime)
+              ? DateFormat('EEE, dd-MM-yyyy hh:mm:ss a').format(dateTime)
               : 'Loading...';
               return Text(
                 formattedDateTime,
@@ -415,7 +416,9 @@ void dispose() {
                             'assets/static_images/${about[index]['icon']}.json',
                             width: AppDimension.width10*5.5,
                             height: AppDimension.height10*5.5,
-                            animate: !_isAnimationStopped,
+                            animate:true,
+                            repeat: false,
+                            reverse: true
                           ),
                           SizedBox(height: AppDimension.height10/2),
                           SingleChildScrollView(
