@@ -6,7 +6,9 @@ import 'package:attendance/const/app_dimension.dart';
 import 'package:attendance/const/app_color.dart';
 import 'package:attendance/const/app_font.dart';
 import 'package:attendance/const/app_variable.dart';
+import 'package:attendance/screen/both_use.dart/about.dart';
 import 'package:attendance/screen/both_use.dart/add_leave.dart';
+import 'package:attendance/screen/both_use.dart/director.dart';
 import 'package:attendance/screen/both_use.dart/history.dart';
 import 'package:attendance/screen/both_use.dart/main_degree.dart';
 import 'package:attendance/screen/both_use.dart/my_team.dart';
@@ -19,6 +21,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 import 'both_use.dart/news.dart';
+import 'both_use.dart/social_media.dart';
+import 'both_use.dart/top_student.dart';
 
 class AdminHomePage extends StatefulWidget {
   const AdminHomePage({super.key});
@@ -118,7 +122,7 @@ void dispose() {
     },
     {
       'icon': 'requst_leave',
-      'name': 'my_department',
+      'name': 'My Colleague',
       'page':const MyTeam()
     }];
     about = [
@@ -135,27 +139,22 @@ void dispose() {
     {
       'icon': 'social_media',
       'name': 'social_media',
-      'page':const MyTeam()
-    },
-    {
-      'icon': 'social_media',
-      'name': 'website',
-      'page':const MyTeam()
+      'page':const SocialMedia()
     },
     {
       'icon': 'top_student',
       'name':'top_student',
-      'page':const MyTeam()
+      'page':TopStudent()
     },
     {
       'icon': 'social_media',
       'name': 'about',
-      'page':const MyTeam()
+      'page':const AboutSchool()
     },
     {
       'icon': 'top_student',
       'name': 'Director',
-      'page':const MyTeam()
+      'page':const Director()
     }];
     return Scaffold(
       backgroundColor: Colors.grey.shade200,

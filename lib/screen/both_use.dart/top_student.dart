@@ -1,18 +1,17 @@
 import 'package:attendance/const/app_appBar.dart';
-import 'package:attendance/screen/both_use.dart/main_degree_detail.dart';
+import 'package:attendance/screen/both_use.dart/top_student_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
-
-class MainDegree extends StatefulWidget {
-  const MainDegree({super.key});
+class TopStudent extends StatefulWidget {
+  const TopStudent({super.key});
 
   @override
-  State<MainDegree> createState() => _MainDegreeState();
+  State<TopStudent> createState() => _TopStudentState();
 }
 
-class _MainDegreeState extends State<MainDegree> {
+class _TopStudentState extends State<TopStudent> {
   List<Map<String, dynamic>> data = [
     {
       'grade': 'ថ្នាក់ទី ៧',
@@ -39,49 +38,63 @@ class _MainDegreeState extends State<MainDegree> {
       'content': 'ប្រវត្តិរូបវត្តការសិក្សារបស់ថ្នាក់ទី១២។ និស្សិតនិស្សិតស្រាវជ្រាវគឺបានចំណាក់សំគាល់ថាគោលបំណងជាបន្តបន្ទាប់គ្នាទៅកាន់រដ្ឋបាលឬវាបានការផ្លាស់ប្ដូរនូវប្រភេទគណនេយ្យចំណេះដឹងរបស់ពួកគាត់ដោយសេដ្ឋកិច្ចប្រកបដោយភាពគិតថ្លៃ។'
     }];
 
-
   @override
   Widget build(BuildContext context) {
-    return BuildAppBar(title: 'main_degree', bodyWidget: Padding(
-      padding: EdgeInsets.all(12),
-      child: ListView.builder(
-        itemCount: data.length,
-        itemBuilder: (context,index){
-          return GestureDetector(
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context){
-                return MainDegreeDetail(grade:data[index]['grade'],content: data[index]['content'],);
-              }));
-            },child: Container(
-              margin: EdgeInsets.only(bottom: 5),
-              padding: EdgeInsets.all(8),
-              width: double.infinity,
-              height: 80,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white
-              ),
-              child: Row(
-                children: [
-                  Container(
-                    width: 70,
-                    height: double.infinity,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: Colors.white
-                    ),
-                    child: Lottie.asset('assets/static_images/degree.json',repeat: false,reverse: true),
-                  ),
-                  SizedBox(width: 20,),
-                  Expanded(child: Container(
-                    child: Text(data[index]['grade'],style: GoogleFonts.notoSerifKhmer(fontSize:16,fontWeight:FontWeight.w400)),
-                  ))
-                ],
-              ),
-            ),
-          );
-        },
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('top_student'),
       ),
-    ));
+      body: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: ListView.builder(
+          itemCount: data.length,
+          itemBuilder: (context, index) {
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context){
+                  return TopStudentDetail(grade: data[index]['grade'],);
+                }));
+              },
+              child: Container(
+                margin: const EdgeInsets.only(bottom: 5),
+                padding: const EdgeInsets.all(8),
+                width: double.infinity,
+                height: 80,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.white,
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                        width: 50,
+                        height: double.infinity,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: Colors.white,
+                        ),
+                        child: Lottie.asset('assets/static_images/degree.json',repeat: false,reverse: true),
+                    ),
+                    const SizedBox(width: 20),
+                    Expanded(
+                      child: Container(
+                        color: Colors.white,
+                        child: Text(
+                          data[index]['grade'],
+                          style: GoogleFonts.notoSerifKhmer(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+    );
   }
 }
