@@ -105,5 +105,21 @@
     "top_student":"Top Student",
     "contact":"Contact",
     "new_detail":"New Detail",
-    "my_department": "My Department"
+    "my_department": "My Department",
+    "schedule": "Schedule",
+    "student": "Student",
+    "scan_attendance_here": "Scan Attendance Here",
+    "version": "Version",
+    "director": "Director",
+    "grade_7": "Grade 7",
+    "grade_8": "Grade 8",
+    "grade_9": "Grade 9",
+    "grade_10": "Grade 10",
+    "grade_11": "Grade 11",
+    "grade_12": "Grade 12",
+    "student_management": "Student Management",
+    "student_center": "Student Center",
+    "student_list":"Student List",
+    "register_student": "Register Student",
+    "grade": "ថ្នាក់ទី"
 }

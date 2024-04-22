@@ -5,14 +5,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LeaveDashboard extends StatefulWidget {
-  const LeaveDashboard({super.key});
+class ScheduleHomePage extends StatefulWidget {
+  const ScheduleHomePage({super.key});
 
   @override
-  State<LeaveDashboard> createState() => _LeaveDashboardState();
+  State<ScheduleHomePage> createState() => _ScheduleHomePageState();
 }
 
-class _LeaveDashboardState extends State<LeaveDashboard> {
+class _ScheduleHomePageState extends State<ScheduleHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +29,7 @@ class _LeaveDashboardState extends State<LeaveDashboard> {
           ),
         ),
         title: Text(
-          'leave_dashboard'.tr(),
+          'schedule_management'.tr(),
           style: GoogleFonts.ubuntu(
             fontSize: 20,
             color: Colors.white,

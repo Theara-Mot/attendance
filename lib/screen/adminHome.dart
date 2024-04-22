@@ -6,6 +6,7 @@ import 'package:attendance/const/app_dimension.dart';
 import 'package:attendance/const/app_color.dart';
 import 'package:attendance/const/app_font.dart';
 import 'package:attendance/const/app_variable.dart';
+import 'package:attendance/scanner/scan_qr.dart';
 import 'package:attendance/screen/both_use.dart/about.dart';
 import 'package:attendance/screen/both_use.dart/add_leave.dart';
 import 'package:attendance/screen/both_use.dart/director.dart';
@@ -107,11 +108,12 @@ void dispose() {
 
     _animationController.forward();
   }
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     data = [
     {
-      'icon': 'requst_leave',
+      'icon': 'scan',
       'name': 'request_leave',
       'page': const AddLeave()
     },
@@ -121,10 +123,16 @@ void dispose() {
       'page':const History(),
     },
     {
-      'icon': 'requst_leave',
-      'name': 'My Colleague',
+      'icon': 'scan',
+      'name': 'my_department',
       'page':const MyTeam()
-    }];
+    },
+    if(GlobalVariable.userType=='admin'){
+      'icon': 'scan',
+      'name': 'scan_attendance_here',
+      'page':const ScanQRCode()
+    }
+    ];
     about = [
     {
       'icon': 'degree',
@@ -153,7 +161,7 @@ void dispose() {
     },
     {
       'icon': 'top_student',
-      'name': 'Director',
+      'name': 'director',
       'page':const Director()
     }];
     return Scaffold(
@@ -197,6 +205,7 @@ void dispose() {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            /// Datetime
             Container(
               width: double.infinity,
               padding: EdgeInsets.only(top: AppDimension.height8/2, bottom: AppDimension.height8/2),
@@ -229,6 +238,8 @@ void dispose() {
       ),
             ),
             SizedBox(height:AppDimension.height20),
+
+            /// Check In - Check Out
             SizedBox(
               child: Row(
                 children: [
@@ -295,6 +306,8 @@ void dispose() {
               )
             ),
             SizedBox(height: AppDimension.height20),
+
+            /// Function
             Container(
               width: double.infinity,
               padding: EdgeInsets.all(12.0),
@@ -302,32 +315,94 @@ void dispose() {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(AppDimension.radius8),
               ),
-              child: GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  mainAxisSpacing:8.0,
-                  crossAxisSpacing: 8.0,
-                    childAspectRatio:1.1
-                ),
-                itemCount: data.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return GestureDetector(
-                    onTap: (){
+              child: Column(
+                children: [
+                  GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3, // Divided by 3 to accommodate 3 items per row
+                      mainAxisSpacing: 8.0,
+                      crossAxisSpacing: 8.0,
+                      childAspectRatio: 1,
+                    ),
+                    itemCount: data.length-1,
+                    itemBuilder: (BuildContext context, int index) {
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.of(context, rootNavigator: true).push(
+                            MaterialPageRoute(builder: (BuildContext context) {
+                              return data[index]['page'];
+                            }),
+                          );
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                color: AppColor.primaryColor,
+                                spreadRadius: 1,
+                                blurRadius: 1,
+                                offset: const Offset(0, 0),
+                              ),
+                            ],
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                              color: AppColor.primaryColor.withOpacity(0.3),
+                              width: 1.0,
+                            ),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Lottie.asset(
+                                'assets/static_images/${data[index]['icon']}.json',
+                                width: AppDimension.width10 * 6.5,
+                                height: AppDimension.height10 * 6.5,
+                                reverse: true,
+                                repeat: false,
+                                animate:true,
+                              ),
+                              SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Text(
+                                  data[index]['name'].toString().tr(),
+                                  style: GoogleFonts.ubuntu(
+                                    fontSize: AppDimension.font15,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black.withOpacity(0.6),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                  SizedBox(height:8),
+                  GestureDetector(
+                    onTap: () {
                       Navigator.of(context, rootNavigator: true).push(
-                      MaterialPageRoute( builder: (BuildContext context) { return data[index]['page']; }, ));
+                        MaterialPageRoute(builder: (BuildContext context) {
+                          return data[3]['page'];
+                        }),
+                      );
                     },
                     child: Container(
+                      width: double.infinity,
                       padding: EdgeInsets.all(5),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         boxShadow: [
                           BoxShadow(
-                            color:Colors.white.withOpacity(0.9),
+                            color: AppColor.primaryColor,
                             spreadRadius: 1,
                             blurRadius: 2,
-                            offset:const Offset(0, 0),
+                            offset: const Offset(0, 0),
                           ),
                         ],
                         borderRadius: BorderRadius.circular(10),
@@ -341,31 +416,33 @@ void dispose() {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Lottie.asset(
-                            'assets/static_images/${data[index]['icon']}.json',
-                            width: AppDimension.width10*5.5,
-                            height: AppDimension.height10*5.5,
-                            animate: !_isAnimationStopped,
+                            'assets/static_images/${data[3]['icon']}.json',
+                            width: AppDimension.width10 * 6.5,
+                            height: AppDimension.height10 * 6.5,
+                            animate:true,
+                            repeat: false
                           ),
-                          SizedBox(height: AppDimension.height10/2),
                           SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: Text(
-                            data[index]['name'].toString().tr(),
-                            style: GoogleFonts.ubuntu(
-                              fontSize: AppDimension.font15,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.black.withOpacity(0.6),
+                              data[3]['name'].toString().tr(),
+                              style: GoogleFonts.ubuntu(
+                                fontSize: AppDimension.font15,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black.withOpacity(0.6),
+                              ),
                             ),
-                          ),
                           )
                         ],
                       ),
                     ),
-                  );
-                },
+                  )
+                ],
               ),
             ),
             SizedBox(height:AppDimension.height20),
+
+            /// Public Function
             Container(
               width: double.infinity,
               padding: EdgeInsets.all(AppDimension.margin8),

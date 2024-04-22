@@ -24,11 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (userType == 'user' || userType == 'admin') {
       GlobalVariable.userType = userType;
       await prefs.setString('userType', userType);
-      setState(() {
-        
-      });
     } else {
-      // Handle invalid user types here (optional)
       print('Invalid user type entered');
     }
   }
@@ -124,10 +120,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 30),
                 GestureDetector(
                   onTap: (){
-                    _saveToSharedPreferences();
+                    // _saveToSharedPreferences();
                     //GlobalVariable.userType = passwordController.text.toLowerCase();
                     GlobalVariable.userType = 'admin';
-                    FocusScope.of(context).unfocus();
+                    //FocusScope.of(context).unfocus();
                     if(GlobalVariable.userType == 'admin' || GlobalVariable.userType == "user"){
                       Navigator.of(context, rootNavigator: true).pushAndRemoveUntil( 
                       MaterialPageRoute( builder: (BuildContext context) { return MyAppHomePage(); }, ), (_) => false, );
@@ -165,7 +161,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         style: GoogleFonts.ubuntu(color: Colors.grey.withOpacity(0.3))
                     ),
                     const SizedBox(width: 5,),
-                    Text('1.1.1'.tr(),
+                    Text('1.1.1',
                         style: GoogleFonts.ubuntu(color: Colors.grey.withOpacity(0.3))
                     )
                   ],

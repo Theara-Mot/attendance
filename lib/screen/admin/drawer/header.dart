@@ -1,3 +1,5 @@
+import 'package:attendance/const/app_variable.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -22,24 +24,23 @@ class CustomDrawerHeader extends StatelessWidget {
             width: 40,
             height: 40,
             decoration: BoxDecoration(
-              image: DecorationImage(image: AssetImage('assets/static_images/logo.png'))
+              image: DecorationImage(image: AssetImage('assets/static_images/s_logo.jpg'))
             ),
           ),
-          if (isColapsed) const SizedBox(width: 10),
+          const SizedBox(width: 5),
           if (isColapsed)
             Expanded(
-              flex: 3,
+              flex: 5,
               child: Text(
-                'Smart HR',
-                style: GoogleFonts.fascinate(
+                'វិទ្យាល័យសម្តេចឪ សម្តេចម៉ែ',
+                style: GoogleFonts.notoSerifKhmer(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  fontSize: 20,
+                  fontSize: 17,
                 ),
                 maxLines: 1,
               ),
             ),
-          if (isColapsed) const Spacer(),
         ],
       ),
     );

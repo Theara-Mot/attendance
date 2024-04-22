@@ -2,8 +2,9 @@
 
 import 'package:attendance/const/app_dimension.dart';
 import 'package:attendance/const/app_variable.dart';
-import 'package:attendance/screen/admin/leave_management/leave_dashboard.dart';
+import 'package:attendance/screen/admin/scehedule_management//schedule_homepage.dart';
 import 'package:attendance/screen/admin/staff_management/staff_management.dart';
+import 'package:attendance/screen/admin/student_management/StudentHomePage.dart';
 import 'package:attendance/screen/adminHome.dart';
 import 'package:attendance/const/app_color.dart';
 import 'package:attendance/provider/provider.dart';
@@ -90,14 +91,21 @@ class _MyAppHomePageState extends State<MyAppHomePage> {
       PersistentBottomNavBarItem(
         textStyle: GoogleFonts.ubuntu(fontWeight: FontWeight.w500),
         icon: const Icon(Icons.library_books_outlined),
-        title: "leave".tr(),
+        title: "schedule".tr(),
         activeColorPrimary: Colors.blue,
         inactiveColorPrimary: Colors.grey,
       ),
       PersistentBottomNavBarItem(
         textStyle: GoogleFonts.ubuntu(fontWeight: FontWeight.w500),
-        icon: const Icon(Icons.person_pin_outlined),
+        icon: const Icon(Icons.perm_contact_cal_sharp),
         title: "staff".tr(),
+        activeColorPrimary: Colors.blue,
+        inactiveColorPrimary: Colors.grey,
+      ),
+      PersistentBottomNavBarItem(
+        textStyle: GoogleFonts.ubuntu(fontWeight: FontWeight.w500),
+        icon: const Icon(Icons.person_pin),
+        title: "student".tr(),
         activeColorPrimary: Colors.blue,
         inactiveColorPrimary: Colors.grey,
       ),
@@ -113,7 +121,11 @@ class _MyAppHomePageState extends State<MyAppHomePage> {
     
     if (GlobalVariable.userType != "admin") {
       items.removeAt(3); 
-      items.removeAt(2); 
+      items.removeAt(2);
+      items.removeAt(4);
+    }
+    if(GlobalVariable.userType =='admin'){
+      items.removeAt(1);
     }
     return items;
   }
@@ -122,10 +134,10 @@ class _MyAppHomePageState extends State<MyAppHomePage> {
   List<Widget> _buildScreens() {
     if (GlobalVariable.userType == "admin") {
       return [
-        const AdminHomePage(),
-        const ScanQRCode(),
-        const LeaveDashboard(),
-        const StaffManagement(),
+        AdminHomePage(),
+        ScheduleHomePage(),
+        StaffManagement(),
+        StudentHomePage(),
         StaffProfilePage(),
       ];
     } else {
