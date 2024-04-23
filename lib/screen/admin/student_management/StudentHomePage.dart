@@ -105,9 +105,9 @@ class _StudentHomePageState extends State<StudentHomePage> {
                     height: 50,
                     padding: EdgeInsets.all(5),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color:index == currentIndex ?AppColor.primaryColor: Colors.white,
                       boxShadow: [
-                        if (index == currentIndex)
+                        if (index == currentIndex )
                           BoxShadow(
                             color: AppColor.primaryColor,
                             spreadRadius: 1,
@@ -139,7 +139,7 @@ class _StudentHomePageState extends State<StudentHomePage> {
                             style: GoogleFonts.notoSerifKhmer(
                               fontSize: AppDimension.font15,
                               fontWeight: FontWeight.w500,
-                              color: Colors.black.withOpacity(0.6),
+                              color:index == currentIndex ?Colors.white: Colors.black.withOpacity(0.6),
                             ),
                           ),
                         ),

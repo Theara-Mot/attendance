@@ -1,3 +1,4 @@
+import 'package:attendance/const/app_buildButton.dart';
 import 'package:attendance/const/app_variable.dart';
 import 'package:attendance/main.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -118,37 +119,25 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 const SizedBox(height: 30),
-                GestureDetector(
-                  onTap: (){
-                    // _saveToSharedPreferences();
-                    //GlobalVariable.userType = passwordController.text.toLowerCase();
-                    GlobalVariable.userType = 'admin';
-                    //FocusScope.of(context).unfocus();
-                    if(GlobalVariable.userType == 'admin' || GlobalVariable.userType == "user"){
-                      Navigator.of(context, rootNavigator: true).pushAndRemoveUntil( 
+                BuildButton(text: 'login', function: (){
+                  // _saveToSharedPreferences();
+                  //GlobalVariable.userType = passwordController.text.toLowerCase();
+                  GlobalVariable.userType = 'admin';
+                  //FocusScope.of(context).unfocus();
+                  if(GlobalVariable.userType == 'admin' || GlobalVariable.userType == "user"){
+                    Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
                       MaterialPageRoute( builder: (BuildContext context) { return MyAppHomePage(); }, ), (_) => false, );
-                    }else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          backgroundColor:AppColor.primaryColor,
-                          elevation:0,
-                          content: Text('Your snackbar message here'),
-                          duration: Duration(seconds: 2),
-                        ),
-                      );
-                    }
-                  },
-                  child: Container(
-                    padding:const EdgeInsets.symmetric(vertical: 10),
-                    alignment: Alignment.center,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: AppColor.primaryColor
-                    ),
-                    child: Text('login'.tr(),style: GoogleFonts.ubuntu(fontSize:22,color:Colors.white),),
-                  ),
-                ),
+                  }else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        backgroundColor:AppColor.primaryColor,
+                        elevation:0,
+                        content: Text('Your snackbar message here'),
+                        duration: Duration(seconds: 2),
+                      ),
+                    );
+                  }
+                }),
                 Spacer(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

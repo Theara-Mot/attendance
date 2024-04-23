@@ -30,7 +30,7 @@ class _BuildButtonState extends State<BuildButton> {
           child: Center(
             child: Text(
               widget.text.tr(),
-              style: TextStyle(fontSize: 22, color: Colors.white),
+              style: TextStyle(fontSize: 20, color: Colors.white),
             ),
           ),
         ),
