@@ -15,10 +15,10 @@ class Classes extends StatefulWidget {
 
 class _ClassesState extends State<Classes> {
   List<Map<String,dynamic>> data = [
-    {'id':1,'name':'2022-2023','status':'active'},
-    {'id':2,'name':'2023-2024','status':'active'},
-    {'id':3,'name':'2024-2025','status':'active'},
-    {'id':4,'name':'2025-2026','status':'Inactive'},
+    {'id':1,'name':'7 A','status':'active'},
+    {'id':2,'name':'7 B','status':'active'},
+    {'id':3,'name':'7 C','status':'active'},
+    {'id':4,'name':'7 D','status':'Inactive'},
   ];
   @override
   Widget build(BuildContext context) {

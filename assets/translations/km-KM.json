@@ -148,5 +148,6 @@
     "update_day": "Update Day",
     "day": "Day",
     "job_division": "Job Division",
-    "year":"Year"
+    "year":"Year",
+    "select_status": "Select Status"
 }
