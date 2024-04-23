@@ -1,11 +1,17 @@
 
 import 'package:attendance/screen/admin/drawer/custom_listtile.dart';
 import 'package:attendance/screen/admin/drawer/header.dart';
+import 'package:attendance/screen/admin/scehedule_management/add_shift.dart';
+import 'package:attendance/screen/admin/scehedule_management/add_time.dart';
 import 'package:attendance/screen/admin/staff_management/staff_center.dart';
 import 'package:attendance/screen/admin/staff_management/staff_list.dart';
+import 'package:attendance/screen/admin/student_management/setting/add_class.dart';
+import 'package:attendance/screen/admin/student_management/setting/add_day.dart';
+import 'package:attendance/screen/admin/student_management/setting/add_year.dart';
 import 'package:attendance/screen/admin/student_management/student_center.dart';
 import 'package:attendance/screen/admin/student_management/student_list.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../student_management/register_student.dart';
 
@@ -19,7 +25,13 @@ class CustomDrawerStudent extends StatefulWidget {
 
 class _CustomDrawerStudentState extends State<CustomDrawerStudent> {
   bool _isCollapsed = true;
-
+  Container textName(String name){
+    return Container(
+        margin: EdgeInsets.only(top: 5,bottom: 5),
+        width: double.infinity,
+        child: Text(name,textAlign: TextAlign.start,style:GoogleFonts.notoSerifKhmer(color:Colors.white, fontSize:18)
+        ));
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -72,6 +84,48 @@ class _CustomDrawerStudentState extends State<CustomDrawerStudent> {
                 route: const RegisterStudent(),
               ),
               //const Divider(color: Colors.white),
+              const Spacer(),
+              textName('setting'),
+              CustomListTile(
+                isCollapsed: _isCollapsed,
+                icon: Icons.date_range,
+                title: 'add_year',
+                infoCount: 0,
+                doHaveMoreOptions: Icons.arrow_forward_ios,
+                route: const AddYear(),
+              ),
+              CustomListTile(
+                isCollapsed: _isCollapsed,
+                icon: Icons.home,
+                title: 'add_class',
+                infoCount: 0,
+                doHaveMoreOptions: Icons.arrow_forward_ios,
+                route: const AddClass(),
+              ),
+              CustomListTile(
+                isCollapsed: _isCollapsed,
+                icon: Icons.timelapse_outlined,
+                title: 'add_time',
+                infoCount: 0,
+                doHaveMoreOptions: Icons.arrow_forward_ios,
+                route: const AddTime(),
+              ),
+              CustomListTile(
+                isCollapsed: _isCollapsed,
+                icon: Icons.filter_tilt_shift_outlined,
+                title: 'add_shift',
+                infoCount: 0,
+                doHaveMoreOptions: Icons.arrow_forward_ios,
+                route: const AddShift(),
+              ),
+              CustomListTile(
+                isCollapsed: _isCollapsed,
+                icon: Icons.view_day_sharp,
+                title: 'add_day',
+                infoCount: 0,
+                doHaveMoreOptions: Icons.arrow_forward_ios,
+                route: const AddDay(),
+              ),
               const Spacer(),
               // BottomUserInfo(isCollapsed: _isCollapsed),
               Align(

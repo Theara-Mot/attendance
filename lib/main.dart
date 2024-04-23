@@ -3,8 +3,8 @@
 import 'package:attendance/const/app_dimension.dart';
 import 'package:attendance/const/app_variable.dart';
 import 'package:attendance/screen/admin/scehedule_management//schedule_homepage.dart';
-import 'package:attendance/screen/admin/staff_management/staff_management.dart';
-import 'package:attendance/screen/admin/student_management/StudentHomePage.dart';
+import 'package:attendance/screen/admin/staff_management/staff_homepage.dart';
+import 'package:attendance/screen/admin/student_management/student_homepage.dart';
 import 'package:attendance/screen/adminHome.dart';
 import 'package:attendance/const/app_color.dart';
 import 'package:attendance/provider/provider.dart';

@@ -3,7 +3,9 @@ import 'package:attendance/screen/admin/drawer/custom_listtile.dart';
 import 'package:attendance/screen/admin/drawer/header.dart';
 import 'package:attendance/screen/admin/staff_management/staff_center.dart';
 import 'package:attendance/screen/admin/staff_management/staff_list.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 class CustomDrawerStaff extends StatefulWidget {
@@ -15,7 +17,13 @@ class CustomDrawerStaff extends StatefulWidget {
 
 class _CustomDrawerStaffState extends State<CustomDrawerStaff> {
   bool _isCollapsed = true;
-
+  static Container textName(String name){
+    return Container(
+      margin: EdgeInsets.only(top: 5,bottom: 5),
+        width: double.infinity,
+        child: Text(name,textAlign: TextAlign.start,style:GoogleFonts.notoSerifKhmer(color:Colors.white, fontSize:18)
+        ));
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -59,16 +67,25 @@ class _CustomDrawerStaffState extends State<CustomDrawerStaff> {
                 doHaveMoreOptions: Icons.arrow_forward_ios,
                 route: StaffList(),
               ),
-
               CustomListTile(
                 isCollapsed: _isCollapsed,
                 icon: Icons.person_add_alt_outlined,
-                title: 'add_staff',
+                title: 'create_staff',
                 infoCount: 0,
                 doHaveMoreOptions: Icons.arrow_forward_ios,
                 route: StaffList(),
               ),
-              //const Divider(color: Colors.white),
+              // const Divider(color: Colors.white),
+              const Spacer(),
+              textName('Setting'),
+              CustomListTile(
+                isCollapsed: _isCollapsed,
+                icon: Icons.date_range,
+                title: 'Job Division',
+                infoCount: 0,
+                doHaveMoreOptions: Icons.arrow_forward_ios,
+                route: StaffList(),
+              ),
               const Spacer(),
               // BottomUserInfo(isCollapsed: _isCollapsed),
               Align(
