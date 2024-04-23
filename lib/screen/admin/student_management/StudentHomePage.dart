@@ -63,6 +63,7 @@ class _StudentHomePageState extends State<StudentHomePage> {
       'A','B','C','D','E','F'
     ];
 
+    bool isShow = false;
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
       appBar: AppBar(
@@ -98,6 +99,7 @@ class _StudentHomePageState extends State<StudentHomePage> {
                     setState(() {
                       currentIndex = index;
                     });
+
                   },
                   child: Container(
                     margin: EdgeInsets.only(bottom: 5, top: 5),

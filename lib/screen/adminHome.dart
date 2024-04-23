@@ -114,7 +114,7 @@ void dispose() {
     data = [
     {
       'icon': 'scan',
-      'name': 'request_leave',
+      'name': 'leave',
       'page': const AddLeave()
     },
     {
@@ -124,7 +124,7 @@ void dispose() {
     },
     {
       'icon': 'scan',
-      'name': 'my_department',
+      'name': 'department',
       'page':const MyTeam()
     },
     if(GlobalVariable.userType=='admin'){
@@ -370,10 +370,10 @@ void dispose() {
                                 scrollDirection: Axis.horizontal,
                                 child: Text(
                                   data[index]['name'].toString().tr(),
-                                  style: GoogleFonts.ubuntu(
-                                    fontSize: AppDimension.font15,
+                                  style: GoogleFonts.notoSerifKhmer(
+                                    fontSize: 17,
                                     fontWeight: FontWeight.w500,
-                                    color: Colors.black.withOpacity(0.6),
+                                    color: AppColor.primaryColor,
                                   ),
                                 ),
                               )
@@ -426,10 +426,10 @@ void dispose() {
                             scrollDirection: Axis.horizontal,
                             child: Text(
                               data[3]['name'].toString().tr(),
-                              style: GoogleFonts.ubuntu(
-                                fontSize: AppDimension.font15,
+                              style: GoogleFonts.notoSerifKhmer(
+                                fontSize: 17,
                                 fontWeight: FontWeight.w500,
-                                color: Colors.black.withOpacity(0.6),
+                                color: AppColor.primaryColor,
                               ),
                             ),
                           )
@@ -504,10 +504,10 @@ void dispose() {
                                 scrollDirection: Axis.horizontal,
                                 child: Text(
                                   about[index]['name'].toString().tr(),
-                                  style: GoogleFonts.ubuntu(
-                                    fontSize: AppDimension.font15,
+                                  style: GoogleFonts.notoSerifKhmer(
+                                    fontSize: 17,
                                     fontWeight: FontWeight.w500,
-                                    color: Colors.black.withOpacity(0.6),
+                                    color: AppColor.primaryColor,
                                   ),
                                 ),
                               ),
