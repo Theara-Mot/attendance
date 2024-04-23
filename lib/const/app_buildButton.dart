@@ -6,7 +6,8 @@ import 'app_color.dart';
 class BuildButton extends StatefulWidget {
   final String text;
   final Function() function;
-  const BuildButton({Key? key, required this.text,required this.function});
+  final Color color;
+  const BuildButton({Key? key, required this.text,required this.function, this.color = AppColor.primaryColor});
 
   @override
   State<BuildButton> createState() => _BuildButtonState();
@@ -17,16 +18,16 @@ class _BuildButtonState extends State<BuildButton> {
   Widget build(BuildContext context) {
     return Ink(
       decoration: BoxDecoration(
-        color: AppColor.primaryColor,
+        color: widget.color,
         borderRadius: BorderRadius.circular(30),
       ),
       child: InkWell(
         onTap: widget.function,
-        splashColor: Colors.blueAccent,
+        splashColor: Colors.white60,
         borderRadius: BorderRadius.circular(30),
-        child: SizedBox(
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical:8),
           width: double.infinity,
-          height: 40,
           child: Center(
             child: Text(
               widget.text.tr(),

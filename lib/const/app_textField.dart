@@ -3,18 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // ignore: must_be_immutable
-class BuildTextField extends StatefulWidget {
+class BuildSelectText extends StatefulWidget {
   String selectText;
   final List<String> textList;
   final String label;
 
-  BuildTextField({Key? key, required this.selectText, required this.textList, required this.label}) : super(key: key);
+  BuildSelectText({Key? key, required this.selectText, required this.textList, required this.label}) : super(key: key);
 
   @override
-  _BuildTextFieldState createState() => _BuildTextFieldState();
+  _BuildSelectTextState createState() => _BuildSelectTextState();
 }
 
-class _BuildTextFieldState extends State<BuildTextField> {
+class _BuildSelectTextState extends State<BuildSelectText> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

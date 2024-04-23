@@ -8,12 +8,17 @@ import 'package:attendance/screen/admin/staff_management/staff_list.dart';
 import 'package:attendance/screen/admin/student_management/setting/add_class.dart';
 import 'package:attendance/screen/admin/student_management/setting/add_day.dart';
 import 'package:attendance/screen/admin/student_management/setting/add_year.dart';
+import 'package:attendance/screen/admin/student_management/setting/days.dart';
+import 'package:attendance/screen/admin/student_management/setting/shift.dart';
+import 'package:attendance/screen/admin/student_management/setting/times.dart';
+import 'package:attendance/screen/admin/student_management/setting/years.dart';
 import 'package:attendance/screen/admin/student_management/student_center.dart';
 import 'package:attendance/screen/admin/student_management/student_list.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../student_management/register_student.dart';
+import '../student_management/setting/classes.dart';
 
 
 class CustomDrawerStudent extends StatefulWidget {
@@ -89,42 +94,42 @@ class _CustomDrawerStudentState extends State<CustomDrawerStudent> {
               CustomListTile(
                 isCollapsed: _isCollapsed,
                 icon: Icons.date_range,
-                title: 'add_year',
+                title: 'year',
                 infoCount: 0,
                 doHaveMoreOptions: Icons.arrow_forward_ios,
-                route: const AddYear(),
+                route: const Years(),
               ),
               CustomListTile(
                 isCollapsed: _isCollapsed,
                 icon: Icons.home,
-                title: 'add_class',
+                title: 'classes',
                 infoCount: 0,
                 doHaveMoreOptions: Icons.arrow_forward_ios,
-                route: const AddClass(),
+                route: const Classes(),
               ),
               CustomListTile(
                 isCollapsed: _isCollapsed,
                 icon: Icons.timelapse_outlined,
-                title: 'add_time',
+                title: 'time',
                 infoCount: 0,
                 doHaveMoreOptions: Icons.arrow_forward_ios,
-                route: const AddTime(),
+                route: const Times(),
               ),
               CustomListTile(
                 isCollapsed: _isCollapsed,
                 icon: Icons.filter_tilt_shift_outlined,
-                title: 'add_shift',
+                title: 'shift',
                 infoCount: 0,
                 doHaveMoreOptions: Icons.arrow_forward_ios,
-                route: const AddShift(),
+                route: const Shift(),
               ),
               CustomListTile(
                 isCollapsed: _isCollapsed,
                 icon: Icons.view_day_sharp,
-                title: 'add_day',
+                title: 'day',
                 infoCount: 0,
                 doHaveMoreOptions: Icons.arrow_forward_ios,
-                route: const AddDay(),
+                route: const Days(),
               ),
               const Spacer(),
               // BottomUserInfo(isCollapsed: _isCollapsed),

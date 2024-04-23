@@ -147,5 +147,6 @@
     "delete_day": "Delete Day",
     "update_day": "Update Day",
     "day": "Day",
-    "job_division": "Job Division"
+    "job_division": "Job Division",
+    "year":"Year"
 }

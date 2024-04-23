@@ -11,7 +11,7 @@ class BuildInputCard extends StatefulWidget {
     Key? key,
     required this.controller,
     this.Maxline = 1,
-    required this.hint
+    required this.hint,
   }) : super(key: key);
 
   @override
@@ -27,20 +27,23 @@ class _BuildInputCardState extends State<BuildInputCard> {
       color: Colors.white,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: TextField(
-          controller: widget.controller,
-          textInputAction: TextInputAction.done,
-          keyboardType: TextInputType.text,
-          style: GoogleFonts.notoSerifKhmer(
-            fontSize: 14,
-            fontWeight: FontWeight.w400,
-            color: Colors.black,
-          ),
-          maxLines: widget.Maxline,
-          decoration: InputDecoration.collapsed(
-            hintText: widget.hint.tr(),
-            fillColor: Colors.white,
-            filled: true,
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 4), // Adjust top and bottom padding here
+          child: TextField(
+            controller: widget.controller,
+            textInputAction: TextInputAction.done,
+            keyboardType: TextInputType.text,
+            style: GoogleFonts.notoSerifKhmer(
+              fontSize: 14,
+              fontWeight: FontWeight.w400,
+              color: Colors.black,
+            ),
+            maxLines: widget.Maxline,
+            decoration: InputDecoration.collapsed(
+              hintText: widget.hint.tr(),
+              fillColor: Colors.white,
+              filled: true,
+            ),
           ),
         ),
       ),
