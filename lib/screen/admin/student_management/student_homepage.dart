@@ -63,7 +63,6 @@ class _StudentHomePageState extends State<StudentHomePage> {
       'A','B','C','D','E','F'
     ];
 
-    bool isShow = false;
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
       appBar: AppBar(
