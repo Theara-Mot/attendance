@@ -78,7 +78,7 @@ class CustomListTile extends StatelessWidget {
                       flex: 4,
                       child: Text(
                         title.tr(),
-                        style: GoogleFonts.ubuntu(
+                        style: GoogleFonts.notoSerifKhmer(
                           fontSize: 16,
                           color: Colors.white,
                         ),

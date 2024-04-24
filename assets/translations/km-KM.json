@@ -149,5 +149,8 @@
     "day": "Day",
     "job_division": "Job Division",
     "year":"Year",
-    "select_status": "Select Status"
+    "select_status": "Select Status",
+    "class_division": "បែងចែកថ្នាក់សិក្សា",
+    "abnormal_attendance": "វត្តមានខុសប្រកតី",
+    "lecturer_level":"កម្រិតការសិក្សារបស់សាស្រ្តាចារ្យ"
 }

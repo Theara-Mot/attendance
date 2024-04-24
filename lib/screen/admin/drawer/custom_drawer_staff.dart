@@ -86,6 +86,14 @@ class _CustomDrawerStaffState extends State<CustomDrawerStaff> {
                 doHaveMoreOptions: Icons.arrow_forward_ios,
                 route: StaffList(),
               ),
+              CustomListTile(
+                isCollapsed: _isCollapsed,
+                icon: Icons.date_range,
+                title: 'lecturer_level',
+                infoCount: 0,
+                doHaveMoreOptions: Icons.arrow_forward_ios,
+                route: StaffList(),
+              ),
               const Spacer(),
               // BottomUserInfo(isCollapsed: _isCollapsed),
               Align(

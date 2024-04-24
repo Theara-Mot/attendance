@@ -30,12 +30,9 @@ class CustomDrawerStudent extends StatefulWidget {
 
 class _CustomDrawerStudentState extends State<CustomDrawerStudent> {
   bool _isCollapsed = true;
-  Container textName(String name){
-    return Container(
-        margin: EdgeInsets.only(top: 5,bottom: 5),
-        width: double.infinity,
-        child: Text(name,textAlign: TextAlign.start,style:GoogleFonts.notoSerifKhmer(color:Colors.white, fontSize:18)
-        ));
+  Text textName(String name){
+    return Text(name,overflow: TextOverflow.ellipsis,style:GoogleFonts.notoSerifKhmer(color:Colors.white, fontSize:18)
+    );
   }
   @override
   Widget build(BuildContext context) {
@@ -57,8 +54,8 @@ class _CustomDrawerStudentState extends State<CustomDrawerStudent> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomDrawerHeader(isColapsed: _isCollapsed),
               const Divider(
@@ -91,6 +88,14 @@ class _CustomDrawerStudentState extends State<CustomDrawerStudent> {
               //const Divider(color: Colors.white),
               const Spacer(),
               textName('setting'),
+              CustomListTile(
+                isCollapsed: _isCollapsed,
+                icon: Icons.date_range,
+                title: 'class_division',
+                infoCount: 0,
+                doHaveMoreOptions: Icons.arrow_forward_ios,
+                route: const Years(),
+              ),
               CustomListTile(
                 isCollapsed: _isCollapsed,
                 icon: Icons.date_range,

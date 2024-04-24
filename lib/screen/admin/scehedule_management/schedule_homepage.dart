@@ -40,7 +40,38 @@ class _ScheduleHomePageState extends State<ScheduleHomePage> {
       drawer: const CustomDrawerSchedule(),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Container(),
+        child:Column(
+          children: [
+            Text('leave_request'.tr(),
+            style: GoogleFonts.notoSerifKhmer(
+              fontSize:18,
+              color:AppColor.primaryColor,
+              fontWeight:FontWeight.w600
+            ),),
+            Row(
+              children: [
+                Expanded(child: Container(
+                  margin: EdgeInsets.all(8),
+                  height: 120,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)
+                  ),
+                  child: Text('daata'),
+                )),
+                Expanded(child: Container(
+                  margin: EdgeInsets.all(8),
+                  height: 120,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10)
+                  ),
+                  child: Text('daata'),
+                ))
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

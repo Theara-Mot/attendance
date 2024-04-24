@@ -149,5 +149,8 @@
     "day": "Day",
     "job_division": "Job Division",
     "year":"Year",
-    "select_status": "Select Status"
+    "select_status": "Select Status",
+    "class_division": "Class Division",
+    "abnormal_attendance": "Abnormal Attendance",
+    "lecturer_level":"Lecturer's Level"
 }
