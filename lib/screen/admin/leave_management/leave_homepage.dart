@@ -24,6 +24,14 @@ class _LeaveHomePageState extends State<LeaveHomePage> {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  offset: Offset(2,2),
+                  color: Colors.white,
+                  spreadRadius: 2,
+                  blurRadius: 2
+                )
+              ]
             ),
                 child: InkWell(
           splashColor: AppColor.primaryColor,
@@ -50,8 +58,8 @@ class _LeaveHomePageState extends State<LeaveHomePage> {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
               border: Border.all(
-                width: 1,
-                color: AppColor.primaryColor.withOpacity(0.6)
+                width: 2,
+                color: Colors.grey.shade300
               )
             ),
             child: Column(

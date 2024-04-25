@@ -163,10 +163,11 @@ class _LecturerLeaveListState extends State<LecturerLeaveList> {
         itemBuilder: (context, index) {
           String grade = groupedStudents.keys.elementAt(index);
           List<Map<String, dynamic>> students = groupedStudents[grade]!;
-
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              if(index != 0)
+                const SizedBox(height: 20,),
               Container(
                 width: double.infinity,
                 margin: const EdgeInsets.only(bottom: 5.0),
