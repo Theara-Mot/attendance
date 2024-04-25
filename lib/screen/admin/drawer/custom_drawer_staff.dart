@@ -1,6 +1,7 @@
 
 import 'package:attendance/screen/admin/drawer/custom_listtile.dart';
 import 'package:attendance/screen/admin/drawer/header.dart';
+import 'package:attendance/screen/admin/staff_management/setting/lecturer_level.dart';
 import 'package:attendance/screen/admin/staff_management/staff_center.dart';
 import 'package:attendance/screen/admin/staff_management/staff_list.dart';
 import 'package:flutter/cupertino.dart';
@@ -92,7 +93,7 @@ class _CustomDrawerStaffState extends State<CustomDrawerStaff> {
                 title: 'lecturer_level',
                 infoCount: 0,
                 doHaveMoreOptions: Icons.arrow_forward_ios,
-                route: StaffList(),
+                route: LecturerLevel(),
               ),
               const Spacer(),
               // BottomUserInfo(isCollapsed: _isCollapsed),

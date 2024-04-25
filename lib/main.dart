@@ -2,7 +2,7 @@
 
 import 'package:attendance/const/app_dimension.dart';
 import 'package:attendance/const/app_variable.dart';
-import 'package:attendance/screen/admin/scehedule_management//schedule_homepage.dart';
+import 'package:attendance/screen/admin/leave_management/leave_homepage.dart';
 import 'package:attendance/screen/admin/staff_management/staff_homepage.dart';
 import 'package:attendance/screen/admin/student_management/student_homepage.dart';
 import 'package:attendance/screen/adminHome.dart';
@@ -135,7 +135,7 @@ class _MyAppHomePageState extends State<MyAppHomePage> {
     if (GlobalVariable.userType == "admin") {
       return [
         AdminHomePage(),
-        ScheduleHomePage(),
+        LeaveHomePage(),
         StaffManagement(),
         StudentHomePage(),
         StaffProfilePage(),

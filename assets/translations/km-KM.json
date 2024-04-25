@@ -152,5 +152,15 @@
     "select_status": "Select Status",
     "class_division": "បែងចែកថ្នាក់សិក្សា",
     "abnormal_attendance": "វត្តមានខុសប្រកតី",
-    "lecturer_level":"កម្រិតការសិក្សារបស់សាស្រ្តាចារ្យ"
+    "lecturer_level":"កម្រិតការសិក្សារបស់សាស្រ្តាចារ្យ",
+    "high_school": "High School",
+    "primary": "Primary",
+    "active": "Active",
+    "inactive": "Inactive",
+    "add_lecturer_level": "Add Lecturer's Level",
+    "edit_lecturer_level": "Edit Lecturer's Level",
+    "leave_request": "Leave Request",
+    "absent": "Absent",
+    "lecturer_leave_list": "Lecturer Leave List",
+    "student_leave_list": "Student Leave List"
 }

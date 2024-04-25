@@ -557,7 +557,7 @@ class _StudentListState extends State<StudentList> {
                         child: Row(
                           children: [
                             const CircleAvatar(
-                              backgroundImage: AssetImage('assets/static_images/logo.png'),
+                              backgroundImage: AssetImage('assets/static_images/s_logo.jpg'),
                             ),
                             const SizedBox(width: 15.0),
                             Column(

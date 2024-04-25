@@ -152,5 +152,15 @@
     "select_status": "Select Status",
     "class_division": "Class Division",
     "abnormal_attendance": "Abnormal Attendance",
-    "lecturer_level":"Lecturer's Level"
+    "lecturer_level":"Lecturer's Level",
+    "high_school": "High School",
+    "primary": "Primary",
+    "active": "Active",
+    "inactive": "Inactive",
+    "add_lecturer_level": "Add Lecturer's Level",
+    "edit_lecturer_level": "Edit Lecturer's Level",
+    "leave_request": "Leave Request",
+    "absent": "Absent",
+    "lecturer_leave_list": "Lecturer Leave List",
+    "student_leave_list": "Student Leave List"
 }

@@ -1,13 +1,6 @@
 
 import 'package:attendance/screen/admin/drawer/custom_listtile.dart';
 import 'package:attendance/screen/admin/drawer/header.dart';
-import 'package:attendance/screen/admin/scehedule_management/add_shift.dart';
-import 'package:attendance/screen/admin/scehedule_management/add_time.dart';
-import 'package:attendance/screen/admin/staff_management/staff_center.dart';
-import 'package:attendance/screen/admin/staff_management/staff_list.dart';
-import 'package:attendance/screen/admin/student_management/setting/add_class.dart';
-import 'package:attendance/screen/admin/student_management/setting/add_day.dart';
-import 'package:attendance/screen/admin/student_management/setting/add_year.dart';
 import 'package:attendance/screen/admin/student_management/setting/days.dart';
 import 'package:attendance/screen/admin/student_management/setting/shift.dart';
 import 'package:attendance/screen/admin/student_management/setting/times.dart';
