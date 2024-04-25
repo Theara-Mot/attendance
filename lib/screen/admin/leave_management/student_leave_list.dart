@@ -92,7 +92,7 @@ class _StudentLeaveListState extends State<StudentLeaveList> {
                       ),
                       SizedBox(height: 3),
                       Text(
-                        '${data[index]['duration']} ( ${data[index]['date']} )',
+                        '${data[index]['gender']}',
                         style: TextStyle(
                           color: Colors.black.withOpacity(0.6),
                         ),

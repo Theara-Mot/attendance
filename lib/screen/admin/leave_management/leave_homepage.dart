@@ -2,7 +2,9 @@ import 'package:attendance/const/app_appBar.dart';
 import 'package:attendance/const/app_color.dart';
 import 'package:attendance/screen/admin/drawer/custom_drawer_leave.dart';
 import 'package:attendance/screen/admin/drawer/custom_drawer_schedule.dart';
+import 'package:attendance/screen/admin/leave_management/lecturer_absent_list.dart';
 import 'package:attendance/screen/admin/leave_management/lecturer_leave_list.dart';
+import 'package:attendance/screen/admin/leave_management/student_absent_list.dart';
 import 'package:attendance/screen/admin/leave_management/student_leave_list.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -104,7 +106,7 @@ class _LeaveHomePageState extends State<LeaveHomePage> {
             ),),
             Row(
               children: [
-                buildContainer(Icons.person_outline, 'student', 10,page: StudentLeaveList()),
+                buildContainer(Icons.person_outline, 'student', 10,page: LecturerLeaveList()),
                 buildContainer(Icons.person_pin_rounded, 'lecturer', 10,page: LecturerLeaveList()),
               ],
             ),
@@ -117,8 +119,8 @@ class _LeaveHomePageState extends State<LeaveHomePage> {
               ),),
             Row(
               children: [
-                buildContainer(Icons.person_outline, 'student', 10),
-                buildContainer(Icons.person_pin_rounded, 'lecturer', 10),
+                buildContainer(Icons.person_outline, 'student', 10,page: StudentAbsentList()),
+                buildContainer(Icons.person_pin_rounded, 'lecturer', 10,page: LecturerAbsentList()),
               ],
             ),
             SizedBox(height: 15,),
