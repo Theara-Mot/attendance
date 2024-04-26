@@ -163,5 +163,7 @@
     "lecturer_leave_list": "Lecturer Leave List",
     "student_leave_list": "Student Leave List",
     "lecturer_abnormal_list":"Lecturer Abnormal List",
-    "student_abnormal_list":"Student Abnormal List"
+    "student_abnormal_list":"Student Abnormal List",
+    "lecturer_absent_list":"Lecturer Absent List",
+    "student_absent_list":"Student Absent List"
 }

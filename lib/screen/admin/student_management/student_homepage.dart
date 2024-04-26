@@ -1,5 +1,6 @@
  import 'package:attendance/const/app_appBar.dart';
 import 'package:attendance/const/app_color.dart';
+import 'package:attendance/screen/admin/class_management/class_detail.dart';
 import 'package:attendance/screen/admin/drawer/custom_drawer_leave.dart';
 import 'package:attendance/screen/admin/drawer/custom_drawer_student.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -154,18 +155,32 @@ class _StudentHomePageState extends State<StudentHomePage> {
                     shrinkWrap: true,
                     itemCount: grade.length,
                     itemBuilder: (context, index) {
-                      return Container(
-                        alignment: Alignment.center,
-                        margin: EdgeInsets.only(bottom: 5, left: 10, right: 10),
-                        width: double.infinity,
-                        height: 35,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: AppColor.primaryColor,
-                        ),
-                        child: Text(
-                          '${data[currentIndex]['name']}'.tr() + '${grade[index]}',
-                          style: GoogleFonts.notoSerifKhmer(color:Colors.white),
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 3,left: 10,right: 10),
+                        child: Ink(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: AppColor.primaryColor
+                          ),
+                          child: InkWell(
+                            onTap: (){
+                              Navigator.of(context, rootNavigator: true).push(
+                                  MaterialPageRoute( builder: (BuildContext context) { return ClassDetail(name: '${data[currentIndex]['name']}'.tr()); }, ));
+                            },
+                            splashColor: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            child: Container(
+                              alignment: Alignment.center,
+                              padding: EdgeInsets.symmetric(vertical:8),
+                              margin: EdgeInsets.only(bottom: 5, left: 10, right: 10),
+                              width: double.infinity,
+                              height: 35,
+                              child: Text(
+                                '${data[currentIndex]['name']}'.tr() + '${grade[index]}',
+                                style: GoogleFonts.notoSerifKhmer(color:Colors.white),
+                              ),
+                            ),
+                          ),
                         ),
                       );
                     },
