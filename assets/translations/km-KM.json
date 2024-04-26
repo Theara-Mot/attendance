@@ -146,7 +146,6 @@
     "edit_day": "Edit Day",
     "delete_day": "Delete Day",
     "update_day": "Update Day",
-    "day": "Day",
     "job_division": "Job Division",
     "year":"Year",
     "select_status": "Select Status",
@@ -162,5 +161,7 @@
     "leave_request": "Leave Request",
     "absent": "Absent",
     "lecturer_leave_list": "Lecturer Leave List",
-    "student_leave_list": "Student Leave List"
+    "student_leave_list": "Student Leave List",
+    "lecturer_abnormal_list":"Lecturer Abnormal List",
+    "student_abnormal_list":"Student Abnormal List"
 }

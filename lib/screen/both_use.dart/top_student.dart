@@ -40,13 +40,8 @@ class _TopStudentState extends State<TopStudent> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('top_student'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: ListView.builder(
+    return BuildAppBar(title: 'top_student', bodyWidget: ListView.builder(
+      padding: EdgeInsets.all(8),
           itemCount: data.length,
           itemBuilder: (context, index) {
             return GestureDetector(
@@ -93,8 +88,6 @@ class _TopStudentState extends State<TopStudent> {
               ),
             );
           },
-        ),
-      ),
-    );
+        ));
   }
 }
