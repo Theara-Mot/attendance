@@ -2,6 +2,7 @@
 
 import 'package:attendance/const/app_dimension.dart';
 import 'package:attendance/const/app_variable.dart';
+import 'package:attendance/qr_location.dart';
 import 'package:attendance/screen/admin/leave_management/leave_homepage.dart';
 import 'package:attendance/screen/admin/staff_management/staff_homepage.dart';
 import 'package:attendance/screen/admin/student_management/student_homepage.dart';
@@ -12,7 +13,9 @@ import 'package:attendance/scanner/scan_qr.dart';
 import 'package:attendance/screen/auth/login.dart';
 import 'package:attendance/screen/both_use.dart/profile.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:provider/provider.dart';
@@ -20,6 +23,7 @@ import 'package:provider/provider.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  await Geolocator.requestPermission();
   runApp(EasyLocalization(
     supportedLocales:const [
       Locale('en', 'US'),
@@ -51,6 +55,7 @@ class MyApp extends StatelessWidget {
         ),
         navigatorKey: AppDimension.navigatorKey,
         home: LoginScreen(),
+        // home: QRScannerPage(),
       ),
     );
   }

@@ -20,7 +20,6 @@ class QRScannerOverlay extends StatelessWidget {
             overlayColour, BlendMode.srcOut),
         child: Stack(
           children: [
-            
             Container(
               decoration: const BoxDecoration(
                   color: Colors.red,

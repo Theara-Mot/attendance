@@ -8,6 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../../../const/app_dimension.dart';
+import '../../both_use.dart/qr_code.dart';
+
 class StaffManagement extends StatefulWidget {
   const StaffManagement({Key? key}) : super(key: key);
 
@@ -15,7 +18,7 @@ class StaffManagement extends StatefulWidget {
   State<StaffManagement> createState() => _StaffManagementState();
 }
 
-class _StaffManagementState extends State<StaffManagement> {
+class _StaffManagementState extends State<StaffManagement> with SingleTickerProviderStateMixin{
   int currentIndex = 0;
   String selectedDepartment = 'All';
   List<Map<String, dynamic>> stafflist = [
@@ -422,6 +425,55 @@ class _StaffManagementState extends State<StaffManagement> {
 
 
   Map<String, int> departmentCount = {};
+  late AnimationController _animationController;
+  late Animation<double> _scaleAnimation;
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      duration: const Duration(seconds: 4),
+      vsync: this,
+    );
+
+    double beginScale = 1.0;
+    double middleScale = 1.0;
+    double endScale = 1.2;
+    Tween<double> beginTween = Tween<double>(
+      begin: beginScale,
+      end: middleScale,
+    );
+
+    Tween<double> middleTween = Tween<double>(
+      begin: middleScale,
+      end: endScale,
+    );
+
+    Tween<double> endTween = Tween<double>(
+      begin: endScale,
+      end: beginScale,
+    );
+
+    Interval beginInterval = Interval(0.0, 0.33, curve: Curves.easeOut);
+    Interval middleInterval = Interval(0.33, 0.67, curve: Curves.easeInOut);
+    Interval endInterval = Interval(0.67, 1.00, curve: Curves.easeIn);
+
+    _scaleAnimation = TweenSequence<double>([
+      TweenSequenceItem<double>(
+        tween: beginTween.chain(CurveTween(curve: beginInterval)),
+        weight: 1.0,
+      ),
+      TweenSequenceItem<double>(
+        tween: middleTween.chain(CurveTween(curve: middleInterval)),
+        weight: 1.0,
+      ),
+      TweenSequenceItem<double>(
+        tween: endTween.chain(CurveTween(curve: endInterval)),
+        weight: 1.0,
+      ),
+    ]).animate(_animationController);
+
+    _animationController.forward();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -468,6 +520,33 @@ class _StaffManagementState extends State<StaffManagement> {
             color: Colors.white,
           ),
         ),
+        actions: [
+          GestureDetector(
+            onTap: (){
+              Navigator.of(context, rootNavigator: true).push(
+                  MaterialPageRoute( builder: (BuildContext context) { return QRCodeGen(); }, ));
+            },
+            child: AnimatedBuilder(
+                animation: _animationController,
+                builder: (BuildContext context,Widget? child){
+                  return Transform.scale(
+                    scale: _scaleAnimation.value,
+                    child: Container(
+                      margin: EdgeInsets.only(top: AppDimension.width10*1.4,bottom: AppDimension.width10*1.4),
+                      padding: EdgeInsets.all(2),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(AppDimension.radius8),
+                          color: Colors.white
+                      ),
+                      child: Icon(Icons.qr_code,color: Colors.red),
+                    ),
+                  );
+                }
+            ),
+          ),
+          SizedBox(width: 10)
+        ],
       ),
       drawer: const CustomDrawerStaff(),
       body: Padding(

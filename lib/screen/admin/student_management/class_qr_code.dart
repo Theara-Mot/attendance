@@ -14,14 +14,15 @@ import 'package:screenshot/screenshot.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class QRCodeGen extends StatefulWidget {
-  const QRCodeGen({Key? key}) : super(key: key);
+class ClassfQrCode extends StatefulWidget {
+  final String name;
+  const ClassfQrCode({Key? key, required this.name}) : super(key: key);
 
   @override
-  State<QRCodeGen> createState() => _QRCodeGenState();
+  State<ClassfQrCode> createState() => _ClassfQrCodeState();
 }
 
-class _QRCodeGenState extends State<QRCodeGen>
+class _ClassfQrCodeState extends State<ClassfQrCode>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _scaleAnimation;
@@ -89,9 +90,9 @@ class _QRCodeGenState extends State<QRCodeGen>
 
   void _exportAsImage() async {
     final ui.Image? image =
-        await _screenshotController.captureAsUiImage(pixelRatio: 15);
+    await _screenshotController.captureAsUiImage(pixelRatio: 15);
     final ByteData? byteData =
-        await image!.toByteData(format: ui.ImageByteFormat.png);
+    await image!.toByteData(format: ui.ImageByteFormat.png);
     final Uint8List bytes = byteData!.buffer.asUint8List();
 
     try {
@@ -153,8 +154,8 @@ class _QRCodeGenState extends State<QRCodeGen>
                         ),
                         SizedBox(height: 5),
                         Text('High School',
-                          style: GoogleFonts.philosopher(
-                          fontWeight: FontWeight.bold, fontSize: 18)
+                            style: GoogleFonts.philosopher(
+                                fontWeight: FontWeight.bold, fontSize: 18)
                         ),
                       ],
                     ),
@@ -189,6 +190,7 @@ class _QRCodeGenState extends State<QRCodeGen>
                               data: jsonEncode({
                                 'latitude':latitude,
                                 'longitude':longitude,
+                                'className':widget.name
                               }),
                               errorCorrectLevel: QrErrorCorrectLevel.Q,
                               decoration: const PrettyQrDecoration(

@@ -165,7 +165,7 @@ class _StudentHomePageState extends State<StudentHomePage> {
                           child: InkWell(
                             onTap: (){
                               Navigator.of(context, rootNavigator: true).push(
-                                  MaterialPageRoute( builder: (BuildContext context) { return ClassDetail(name: '${data[currentIndex]['name']}'.tr()); }, ));
+                                  MaterialPageRoute( builder: (BuildContext context) { return ClassDetail(name: '${data[currentIndex]['name']}'.tr() + '${grade[index]}'.tr()); }, ));
                             },
                             splashColor: Colors.white,
                             borderRadius: BorderRadius.circular(10),

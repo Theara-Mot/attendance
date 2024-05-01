@@ -1,6 +1,7 @@
 
 import 'package:attendance/screen/admin/drawer/custom_listtile.dart';
 import 'package:attendance/screen/admin/drawer/header.dart';
+import 'package:attendance/screen/admin/staff_management/setting/department.dart';
 import 'package:attendance/screen/admin/staff_management/setting/lecturer_level.dart';
 import 'package:attendance/screen/admin/staff_management/staff_center.dart';
 import 'package:attendance/screen/admin/staff_management/staff_list.dart';
@@ -94,6 +95,14 @@ class _CustomDrawerStaffState extends State<CustomDrawerStaff> {
                 infoCount: 0,
                 doHaveMoreOptions: Icons.arrow_forward_ios,
                 route: LecturerLevel(),
+              ),
+              CustomListTile(
+                isCollapsed: _isCollapsed,
+                icon: Icons.date_range,
+                title: 'department',
+                infoCount: 0,
+                doHaveMoreOptions: Icons.arrow_forward_ios,
+                route: Department(),
               ),
               const Spacer(),
               // BottomUserInfo(isCollapsed: _isCollapsed),
