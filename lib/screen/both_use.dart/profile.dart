@@ -2,7 +2,11 @@ import 'package:attendance/const/app_dimension.dart';
 import 'package:attendance/const/app_appBar.dart';
 import 'package:attendance/const/app_buildCard.dart';
 import 'package:attendance/const/app_color.dart';
+import 'package:attendance/main.dart';
+import 'package:attendance/provider/local_auth.dart';
+import 'package:attendance/provider/local_storage.dart';
 import 'package:attendance/screen/auth/local_auth_screen.dart';
+import 'package:attendance/screen/auth/login.dart';
 import 'package:attendance/screen/profile_menu/about.dart';
 import 'package:attendance/screen/profile_menu/guideline.dart';
 import 'package:attendance/screen/profile_menu/language.dart';
@@ -13,6 +17,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../services/authenticate.dart';
+
 class StaffProfilePage extends StatefulWidget {
   const StaffProfilePage({super.key});
 
@@ -22,7 +28,8 @@ class StaffProfilePage extends StatefulWidget {
 
 class _StaffProfilePageState extends State<StaffProfilePage> {
   bool showSalary = false;
-  
+  Authenticate authentication = Authenticate();
+  LocalStorage localStorage = LocalStorage();
   void showPopupMenu(BuildContext context) {
     showMenu(
       clipBehavior: Clip.hardEdge,
@@ -116,7 +123,7 @@ class _StaffProfilePageState extends State<StaffProfilePage> {
           )
         ),
       ],
-    ).then((value) {
+    ).then((value) async {
       if (value == "password") {
         Navigator.of(context, rootNavigator: true).push(
             MaterialPageRoute( builder: (BuildContext context) { return PasswordScreen(); }, ));
@@ -132,8 +139,10 @@ class _StaffProfilePageState extends State<StaffProfilePage> {
         Navigator.of(context, rootNavigator: true).push( 
           MaterialPageRoute( builder: (BuildContext context) { return Language(); }, ));
       }else if(value == 'logout'){
-        Navigator.of(context, rootNavigator: true).pushAndRemoveUntil( 
-          MaterialPageRoute( builder: (BuildContext context) { return LocalAuthScreen(); }, ), (_) => false, );
+        authentication.logout(context).then((value){
+          Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
+            MaterialPageRoute( builder: (BuildContext context) { return LoginScreen(); }, ), (_) => false, );
+        });
       }else if(value == 'system_update'){
         Navigator.of(context, rootNavigator: true).push(
             MaterialPageRoute( builder: (BuildContext context) { return SystemUpdate(); }, ));

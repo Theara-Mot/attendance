@@ -34,9 +34,10 @@ class _BuildSelectTextState extends State<BuildSelectText> {
               child: CupertinoPicker(
                 itemExtent: 32.0,
                 onSelectedItemChanged: (int index) {
-                  setState(() {
-                    widget.selectText = widget.textList[index];
-                  });
+                  widget.selectText = widget.textList[index];
+                  // setState(() {
+                  //
+                  // });
                 },
                 children: widget.textList.map((String type) {
                   return Text(type);

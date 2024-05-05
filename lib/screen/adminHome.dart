@@ -127,7 +127,7 @@ void dispose() {
       'name': 'department',
       'page':const MyTeam()
     },
-    if(GlobalVariable.userType=='admin'){
+    {
       'icon': 'scan',
       'name': 'scan_attendance_here',
       'page':const ScanQRCode()

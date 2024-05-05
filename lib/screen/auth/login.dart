@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../const/app_color.dart';
+import '../../services/authenticate.dart';
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -15,10 +16,11 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  late TextEditingController accountController;
+  late TextEditingController emailController;
   late TextEditingController passwordController;
   bool _obscureText = true;
   bool rememberMe = false;
+  Authenticate authenticate = Authenticate();
   _saveToSharedPreferences() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String userType = passwordController.text.toLowerCase();
@@ -33,13 +35,13 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
-    accountController = TextEditingController();
+    emailController = TextEditingController();
     passwordController = TextEditingController();
   }
 
   @override
   void dispose() {
-    accountController.dispose();
+    emailController.dispose();
     passwordController.dispose();
     super.dispose();
   }
@@ -77,13 +79,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 80),
                 TextField(
-                  controller: accountController,
+                  controller: emailController,
                   style: GoogleFonts.ubuntu(
                     fontSize: 16,
                     fontWeight: FontWeight.w400,
                     color: Colors.black,
                   ),
-                  keyboardType: TextInputType.number,
+                  keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     hintText: 'account'.tr(),
                     hintStyle: GoogleFonts.ubuntu(fontSize: 18),
@@ -120,23 +122,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 30),
                 BuildButton(text: 'login', function: (){
-                  // _saveToSharedPreferences();
-                  //GlobalVariable.userType = passwordController.text.toLowerCase();
-                  GlobalVariable.userType = 'admin';
-                  //FocusScope.of(context).unfocus();
-                  if(GlobalVariable.userType == 'admin' || GlobalVariable.userType == "user"){
-                    Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
-                      MaterialPageRoute( builder: (BuildContext context) { return MyAppHomePage(); }, ), (_) => false, );
-                  }else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        backgroundColor:AppColor.primaryColor,
-                        elevation:0,
-                        content: Text('Your snackbar message here'),
-                        duration: Duration(seconds: 2),
-                      ),
-                    );
-                  }
+                  String email = emailController.text.trim();
+                  String password = passwordController.text.trim();
+                  authenticate.login(email, password, context: context);
                 }),
                 Spacer(),
                 Row(
