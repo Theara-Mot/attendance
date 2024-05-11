@@ -19,58 +19,63 @@ class Days extends StatefulWidget {
 
 class _DaysState extends State<Days> {
   DayController dayController = DayController('day');
-  List<Day> data =[];
-  bool _isLoading = false;
-  Future<void> fetchData() async {
+  late Future<List<Day>> _daysFuture;
+  List<Day> data = [];
+  Future<List<Day>> fetchDays() async {
     try {
-      setState(() {
-        _isLoading = true;
-      });
-      List<Day> fetchedData = await dayController.fetchDays();
-      setState(() {
-        data = fetchedData;
-      });
+      return await dayController.fetchDays();
     } catch (e) {
       print('Error fetching data: $e');
-    } finally {
-      setState(() {
-        _isLoading = false;
-      });
+      return [];
     }
   }
+
   Future<void> _handleRefresh() async {
-    await fetchData();
+    setState(() {
+      _daysFuture = fetchDays();
+    });
   }
+
   @override
-  void initState(){
+  void initState() {
     super.initState();
-    fetchData();
+    _daysFuture = fetchDays();
   }
+
   @override
   Widget build(BuildContext context) {
     return BuildAppBar(
-        title: 'Days',
-        check: true,
-        notificationIcon: Icons.add_box_outlined,
-        onTapNotification: () async {
-          final updatedData = await Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return AddDay();
-          }));
-          if (updatedData != null) {
-            setState(() {
-              data.add(updatedData);
-            });
-          }
-        },
-        bodyWidget:_isLoading
-            ? Center(child: CircularProgressIndicator()): RefreshIndicator(
-          onRefresh: _handleRefresh,
-          child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child:ListView.builder(
-                  itemCount: data.length,
-                  itemBuilder: (context,index){
-                    Day day = data[index];
+      title: 'Days',
+      check: true,
+      notificationIcon: Icons.add_box_outlined,
+      onTapNotification: () async {
+        final updatedData = await Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return AddDay();
+        }));
+        if (updatedData != null) {
+          setState(() {
+            data.add(updatedData);
+            _daysFuture = fetchDays(); // Update _daysFuture with the new data
+          });
+        }
+      },
+      bodyWidget: FutureBuilder<List<Day>>(
+        future: _daysFuture,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else {
+            List<Day>? data = snapshot.data;
+            return RefreshIndicator(
+              onRefresh: _handleRefresh,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListView.builder(
+                  itemCount: data?.length,
+                  itemBuilder: (context, index) {
+                    Day? day = data?[index];
                     return Padding(
                       padding: const EdgeInsets.all(5), // Adjust the margin as needed
                       child: Ink(
@@ -79,15 +84,16 @@ class _DaysState extends State<Days> {
                           color: Colors.white,
                         ),
                         child: InkWell(
-                          splashColor:  Color.fromARGB(249, 26, 123, 189),
+                          splashColor: Color.fromARGB(249, 26, 123, 189),
                           borderRadius: BorderRadius.circular(10),
                           onTap: () async {
                             final updatedData = await Navigator.push(context, MaterialPageRoute(builder: (context) {
-                              return AddDay(id: day.id, name: day.name, status: day.status);
+                              return AddDay(id: day?.id, name: day?.name, status: day?.status);
                             }));
                             if (updatedData != null) {
                               setState(() {
-                                data[index] = updatedData;
+                                data?[index] = updatedData;
+                                _daysFuture = fetchDays(); // Update _daysFuture with the new data
                               });
                             }
                           },
@@ -104,11 +110,11 @@ class _DaysState extends State<Days> {
                                   child: Text('${index + 1}'),
                                 ),
                                 Text(
-                                  day.name,
+                                  day!.name,
                                   style: GoogleFonts.notoSerifKhmer(fontSize: 18),
                                 ),
                                 Text(
-                                  '${day.status}'.tr(),
+                                  '${day?.status}'.tr(),
                                   style: GoogleFonts.notoSerifKhmer(
                                     fontSize: 18,
                                     color: day.status.toLowerCase() == 'active'
@@ -122,8 +128,13 @@ class _DaysState extends State<Days> {
                         ),
                       ),
                     );
-                  })
-          ),
-        ));
+                  },
+                ),
+              ),
+            );
+          }
+        },
+      ),
+    );
   }
 }

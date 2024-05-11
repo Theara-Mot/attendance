@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../services/controller/day_controller.dart';
+import '../../../../services/model/day_model.dart';
 
 class AddClass extends StatefulWidget {
   final String? name;
@@ -67,10 +68,15 @@ class _AddClassState extends State<AddClass> {
           Row(
             children: [
               Expanded(child: BuildButton(text:widget.name==null? 'submit':'save', function: (){
+                Day updatedData = Day(
+                  name: nameController.text, id: widget.id, status: status,
+                );
                 if(widget.name == null){
                   dayController.createDay(nameController.text,status,context);
+                  Navigator.pop(context,updatedData);
                 }else{
                   dayController.updateDay(widget.id!, nameController.text,status,context);
+                  Navigator.pop(context,updatedData);
                 }
               })),
               if(widget.name !=null)
@@ -78,8 +84,11 @@ class _AddClassState extends State<AddClass> {
               if(widget.name !=null)
                 Expanded(child: BuildButton(text:'Delete', color: Colors.red,
                     function: () async {
+                      Day updatedData = Day(
+                        name: nameController.text, id: widget.id, status: status,
+                      );
                       await dayController.deleteDay(widget.id!,context);
-                      Navigator.pop(context);
+                      Navigator.pop(context,updatedData);
                     })),
             ],
           )

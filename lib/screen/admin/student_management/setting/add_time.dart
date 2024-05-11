@@ -2,6 +2,7 @@ import 'package:attendance/const/app_appBar.dart';
 import 'package:attendance/const/app_buildButton.dart';
 import 'package:attendance/const/app_textField.dart';
 import 'package:attendance/const/build_input_card.dart';
+import 'package:attendance/services/model/day_model.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -67,10 +68,18 @@ class _AddTimeState extends State<AddTime> {
           Row(
             children: [
               Expanded(child: BuildButton(text:widget.name==null? 'submit':'save', function: (){
+                Day updatedData = Day(
+                  name: nameController.text, id: widget.id, status: status,
+                );
                 if(widget.name == null){
-                  dayController.createDay(nameController.text,status,context);
+                  dayController.createDay(nameController.text,status,context).then((value){
+                    Navigator.pop(context, updatedData);
+                  });
+
                 }else{
-                  dayController.updateDay(widget.id!, nameController.text,status,context);
+                  dayController.updateDay(widget.id!, nameController.text,status,context).then((value){
+                    Navigator.pop(context, updatedData);
+                  });
                 }
               })),
               if(widget.name !=null)

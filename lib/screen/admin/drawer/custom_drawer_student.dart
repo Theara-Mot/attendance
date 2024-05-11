@@ -127,7 +127,7 @@ class _CustomDrawerStudentState extends State<CustomDrawerStudent> {
                 title: 'day',
                 infoCount: 0,
                 doHaveMoreOptions: Icons.arrow_forward_ios,
-                route: const Days(),
+                route: Days(),
               ),
               const Spacer(),
               // BottomUserInfo(isCollapsed: _isCollapsed),

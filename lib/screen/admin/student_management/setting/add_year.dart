@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../services/controller/day_controller.dart';
+import '../../../../services/model/day_model.dart';
 
 class AddYear extends StatefulWidget {
   final String? name;
@@ -67,18 +68,27 @@ class _AddYearState extends State<AddYear> {
           Row(
             children: [
               Expanded(child: BuildButton(text:widget.name==null? 'submit':'save', function: (){
+                Day updatedData = Day(
+                  name: nameController.text, id: widget.id, status: status,
+                );
                 if(widget.name == null){
                   dayController.createDay(nameController.text,status,context);
+                  Navigator.pop(context, updatedData);
                 }else{
                   dayController.updateDay(widget.id!, nameController.text,status,context);
+                  Navigator.pop(context, updatedData);
                 }
               })),
               if(widget.name !=null)
                 SizedBox(width: 20,),
               if(widget.name !=null)
                 Expanded(child: BuildButton(text:'Delete', color: Colors.red,
-                    function: (){
-
+                    function: () async {
+                      await dayController.deleteDay(widget.id!, context);
+                      Day updatedData = Day(
+                        name: nameController.text, id: widget.id, status: status,
+                      );
+                      Navigator.pop(context, updatedData);
                 })),
             ],
           )

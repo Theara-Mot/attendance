@@ -8,7 +8,7 @@ import '../model/day_model.dart';
 
 class DayController{
   static String apiUrl = '${GlobalVariable.APP_URL}';
-  static  String token = "18|vc2LYJeisjstNtsOPFxHFH6Xflh73JM87fRURCyN622d942f";
+  static  String token = "1|TqkBbVuZ2SJQHE8UCnTqz1AEVelJUn35FE12KXFs6534768f";
   final String endpoint;
   DayController(this.endpoint);
   Future<List<Day>> fetchDays() async {
@@ -22,6 +22,7 @@ class DayController{
     );
     if (response.statusCode == 200) {
       Iterable jsonResponse = json.decode(response.body)['data'];
+      print(response.body);
       return jsonResponse.map((day) => Day.fromJson(day)).toList();
     } else {
       throw Exception('Failed to load days');
@@ -43,9 +44,7 @@ class DayController{
       final msg = jsonDecode(response.body)['message'];
       final createdDay = Day.fromJson(responseData);
       BuildSnackbar.showSnackbar(context, msg).then((value){
-
       });
-      Navigator.pop(context);
       return createdDay;
     } else {
       String errorMessage = jsonDecode(response.body);
@@ -69,7 +68,6 @@ class DayController{
       final responseData = jsonDecode(response.body)['data'];
       final msg = jsonDecode(response.body)['message'];
       BuildSnackbar.showSnackbar(context, msg);
-      Navigator.pop(context);
       return Day.fromJson(responseData);
     } else {
       String errorMessage = jsonDecode(response.body);
@@ -93,7 +91,6 @@ class DayController{
     if (response.statusCode == 202) {
       final msg = jsonDecode(response.body)['message'];
       BuildSnackbar.showSnackbar(context,msg);
-      Navigator.pop(context);
     }else{
       String errorMessage = jsonDecode(response.body);
       BuildSnackbar.showSnackbar(context, response.statusCode.toString());

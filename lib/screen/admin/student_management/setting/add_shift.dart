@@ -2,6 +2,8 @@ import 'package:attendance/const/app_appBar.dart';
 import 'package:attendance/const/app_buildButton.dart';
 import 'package:attendance/const/app_textField.dart';
 import 'package:attendance/const/build_input_card.dart';
+import 'package:attendance/screen/admin/student_management/setting/shift.dart';
+import 'package:attendance/services/model/day_model.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -71,10 +73,14 @@ class _AddShiftState extends State<AddShift> {
           Row(
             children: [
               Expanded(child: BuildButton(text:widget.name==null? 'submit':'save', function: (){
+
+                Day day = Day(id: widget.id, name: nameController.text, status: status);
                 if(widget.name == null){
                   dayController.createDay(nameController.text,status,context);
+                  Navigator.pop(context,day);
                 }else{
-                  dayController.updateDay(widget.id!, nameController.text, widget.status!=null?widget.status!:status,context);
+                  dayController.updateDay(widget.id!, nameController.text,status,context);
+                  Navigator.pop(context,day);
                 }
               })),
               if(widget.name !=null)
@@ -82,7 +88,9 @@ class _AddShiftState extends State<AddShift> {
               if(widget.name !=null)
                 Expanded(child: BuildButton(text:'Delete', color: Colors.red,
                     function: () async {
+                      Day day = Day(id: widget.id, name: nameController.text, status: status);
                       await dayController.deleteDay(widget.id!,context);
+                      Navigator.pop(context,day);
                     })),
             ],
           )
