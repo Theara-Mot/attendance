@@ -45,8 +45,8 @@ void dispose() {
   late Animation<double> _scaleAnimation;
   List<Map<String, dynamic>> about = [];
   List<Map<String, dynamic>> data = [];
-  final CarouselController _carouselController = CarouselController();
-  final CarouselController _imageController = CarouselController();
+  // final CarouselController _carouselController = CarouselController();
+  // final CarouselController _imageController = CarouselController();
   
   int _currentIndex = 0;
   int _imageIndex = 0;

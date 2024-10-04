@@ -173,14 +173,14 @@ class _MyTeamState extends State<MyTeam> {
                 return GestureDetector(
                   onTap: (){
                      
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => StaffDetail(
-                          staff: filteredEntries[index],
-                        ),
-                      ),
-                    );
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => StaffDetail(
+                    //       staff: filteredEntries[index],
+                    //     ),
+                    //   ),
+                    // );
                     
                   },
                   child: Container(

@@ -113,7 +113,7 @@ class _AddDayState extends State<AddDay> {
   TextEditingController nameController = TextEditingController();
   bool valueData = false;
   String status = '';
-  DayController dayController = DayController('day');
+  DayController dayController = DayController('days');
 
   @override
   void initState() {

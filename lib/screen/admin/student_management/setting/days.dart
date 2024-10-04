@@ -5,6 +5,7 @@ import 'package:attendance/screen/admin/student_management/setting/add_day.dart'
 import 'package:attendance/screen/admin/student_management/setting/add_year.dart';
 import 'package:attendance/services/controller/day_controller.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -18,7 +19,7 @@ class Days extends StatefulWidget {
 }
 
 class _DaysState extends State<Days> {
-  DayController dayController = DayController('day');
+  DayController dayController = DayController('days');
   late Future<List<Day>> _daysFuture;
   List<Day> data = [];
   Future<List<Day>> fetchDays() async {
@@ -113,14 +114,10 @@ class _DaysState extends State<Days> {
                                   day!.name,
                                   style: GoogleFonts.notoSerifKhmer(fontSize: 18),
                                 ),
-                                Text(
-                                  '${day?.status}'.tr(),
-                                  style: GoogleFonts.notoSerifKhmer(
-                                    fontSize: 18,
-                                    color: day.status.toLowerCase() == 'active'
-                                        ? Colors.green
-                                        : Colors.red,
-                                  ),
+                                CupertinoSwitch(
+                                  value:day.status=='Active'?true:false,
+                                  trackColor: Colors.red,
+                                  onChanged: (value) {},
                                 ),
                               ],
                             ),

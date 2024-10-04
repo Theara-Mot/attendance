@@ -10,10 +10,10 @@ import '../main.dart';
 
 class Authenticate{
   // static String url = 'http://127.0.0.1:8000';
-  static String url = 'http://192.168.0.101:1234';
+  static String url = GlobalVariable.APP_URL;
   LocalStorage localStorage = LocalStorage();
   Future<void> login(String email, String password,{BuildContext? context}) async {
-    final response = await http.post(Uri.parse('$url/api/login'), body: {
+    final response = await http.post(Uri.parse('$url/login'), body: {
       'email': email,
       'password': password,
     });

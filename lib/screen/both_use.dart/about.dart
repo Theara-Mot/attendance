@@ -38,14 +38,14 @@ class _AboutSchoolState extends State<AboutSchool> {
   CarouselController _carouselController = CarouselController();
 
 // Function to stop auto-scroll after the first cycle
-  void stopAutoScroll() {
-    _carouselController.stopAutoPlay();
-  }
+//   void stopAutoScroll() {
+//     _carouselController.stopAutoPlay();
+//   }
 
 // Use this function as onPageChanged callback
   void onPageChangedCallback(int index, CarouselPageChangedReason reason) {
     if (index == items.length - 1 && reason == CarouselPageChangedReason.timed) {
-      stopAutoScroll();
+      // stopAutoScroll();
     }
   }
   @override
@@ -62,43 +62,43 @@ class _AboutSchoolState extends State<AboutSchool> {
                 SizedBox(height: 10,),
                 Text(data['header'],textAlign: TextAlign.justify,style: GoogleFonts.notoSerifKhmer(fontSize:20,fontWeight:FontWeight.w600,color:AppColor.primaryColor),),
                 SizedBox(height: 30,),
-                Container(
-                  height: 180,
-                  width: double.infinity,
-                  child: CarouselSlider(
-                    carouselController: _carouselController,
-                    items: items.map((data) {
-                      return Container(
-                        margin: EdgeInsets.all(5.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
-                          child: Image.network(
-                            data,
-                            fit: BoxFit.cover,
-                            width: 1000,
-                          ),
-                        ),
-                      );
-                    }).toList(),
-                    options: CarouselOptions(
-                      height: 400,
-                      aspectRatio: 16 / 9,
-                      viewportFraction: 0.8,
-                      initialPage: 0,
-                      enableInfiniteScroll: true,
-                      reverse: false,
-                      autoPlay: true,
-                      autoPlayInterval: Duration(seconds: 3),
-                      autoPlayAnimationDuration: Duration(milliseconds: 800),
-                      autoPlayCurve: Curves.fastOutSlowIn,
-                      enlargeCenterPage: true,
-                      enlargeFactor: 0.3,
-                      pauseAutoPlayOnTouch: true, // Pause auto-scrolling when touched
-                      onPageChanged: onPageChangedCallback, // Use the defined callback
-                      scrollDirection: Axis.horizontal,
-                    ),
-                  )
-                ),
+                // Container(
+                //   height: 180,
+                //   width: double.infinity,
+                //   child: CarouselSlider(
+                //     carouselController: _carouselController,
+                //     items: items.map((data) {
+                //       return Container(
+                //         margin: EdgeInsets.all(5.0),
+                //         child: ClipRRect(
+                //           borderRadius: BorderRadius.circular(8.0),
+                //           child: Image.network(
+                //             data,
+                //             fit: BoxFit.cover,
+                //             width: 1000,
+                //           ),
+                //         ),
+                //       );
+                //     }).toList(),
+                //     options: CarouselOptions(
+                //       height: 400,
+                //       aspectRatio: 16 / 9,
+                //       viewportFraction: 0.8,
+                //       initialPage: 0,
+                //       enableInfiniteScroll: true,
+                //       reverse: false,
+                //       autoPlay: true,
+                //       autoPlayInterval: Duration(seconds: 3),
+                //       autoPlayAnimationDuration: Duration(milliseconds: 800),
+                //       autoPlayCurve: Curves.fastOutSlowIn,
+                //       enlargeCenterPage: true,
+                //       enlargeFactor: 0.3,
+                //       pauseAutoPlayOnTouch: true, // Pause auto-scrolling when touched
+                //       onPageChanged: onPageChangedCallback, // Use the defined callback
+                //       scrollDirection: Axis.horizontal,
+                //     ),
+                //   )
+                // ),
                 SizedBox(height: 30,),
                 Text(data['content'],textAlign: TextAlign.justify,style: GoogleFonts.notoSerifKhmer(fontSize:14,fontWeight:FontWeight.w400),)
               ],

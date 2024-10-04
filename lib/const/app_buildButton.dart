@@ -7,7 +7,15 @@ class BuildButton extends StatefulWidget {
   final String text;
   final Function() function;
   final Color color;
-  const BuildButton({Key? key, required this.text,required this.function, this.color = AppColor.primaryColor});
+  final double borderRadius; // Add borderRadius parameter
+
+  const BuildButton({
+    Key? key,
+    required this.text,
+    required this.function,
+    this.color = AppColor.primaryColor,
+    this.borderRadius = 30.0, // Set a default value
+  }) : super(key: key);
 
   @override
   State<BuildButton> createState() => _BuildButtonState();
@@ -19,14 +27,14 @@ class _BuildButtonState extends State<BuildButton> {
     return Ink(
       decoration: BoxDecoration(
         color: widget.color,
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(widget.borderRadius), // Use borderRadius parameter
       ),
       child: InkWell(
         onTap: widget.function,
         splashColor: Colors.white60,
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(widget.borderRadius), // Use borderRadius parameter
         child: Container(
-          padding: EdgeInsets.symmetric(vertical:8),
+          padding: EdgeInsets.symmetric(vertical: 8),
           width: double.infinity,
           child: Center(
             child: Text(

@@ -14,7 +14,7 @@ class SocialMedia extends StatefulWidget {
 class _SocialMediaState extends State<SocialMedia> {
   List<Map<String, dynamic>> data = [
     {'name': 'Facebook','img':'facebook', 'url': 'https://www.facebook.com/'},
-    {'name': 'TikTok','img':'tiktok', 'url': 'https://www.tiktok.com/'},
+    {'name': 'TikTok','img':'tiktok', 'url': 'https://www.tiktok.com/@sothearamot'},
     {'name': 'Telegram','img':'telegram', 'url': 'https://telegram.org/'},
     {'name': 'YouTube','img':'youtube', 'url': 'https://www.youtube.com/'},
     {'name': 'Website','img':'website', 'url': 'http://thearamot.epizy.com/'},

@@ -121,7 +121,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 const SizedBox(height: 30),
-                BuildButton(text: 'login', function: (){
+                BuildButton(text: 'login',
+                    borderRadius: 10,
+                    function: (){
                   String email = emailController.text.trim();
                   String password = passwordController.text.trim();
                   authenticate.login(email, password, context: context);

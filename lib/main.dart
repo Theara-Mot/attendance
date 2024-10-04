@@ -14,12 +14,13 @@ import 'package:attendance/scanner/scan_qr.dart';
 import 'package:attendance/screen/auth/login.dart';
 import 'package:attendance/screen/both_use.dart/profile.dart';
 import 'package:attendance/splash_screen.dart';
+import 'package:attendance/tiktok_me.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:motion/motion.dart';
-import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:provider/provider.dart';
 final  navigatorKey = GlobalKey<NavigatorState>();
@@ -71,7 +72,8 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         // navigatorKey: navigatorKey,
-        home:SplashScreen(),
+        // home:SplashScreen(),
+        home:MyAppHomePage(),
         navigatorKey: AppDimension.navigatorKey,
       ),
     );

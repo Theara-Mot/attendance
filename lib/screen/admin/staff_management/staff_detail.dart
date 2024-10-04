@@ -3,8 +3,10 @@ import 'package:attendance/const/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../services/model/student_model.dart';
+
 class StaffDetail extends StatelessWidget {
-  final Map<String, dynamic> staff;
+  final Student staff;
 
   const StaffDetail({required this.staff});
 
@@ -41,7 +43,7 @@ class StaffDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return BuildAppBar(
       centerTitle: true,
-      title: '${staff['name_en']} (${staff['name_kh']})', 
+      title: '${staff.english_name} (${staff.khmer_name})',
       bodyWidget: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,10 +73,10 @@ class StaffDetail extends StatelessWidget {
                       height: 120,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        image: DecorationImage(
-                          image: NetworkImage(staff['avatar']),
-                          fit: BoxFit.cover,
-                        ),
+                        // image: DecorationImage(
+                        //   image: NetworkImage(staff.),
+                        //   fit: BoxFit.cover,
+                        // ),
                       ),
                     ),
                   ),
@@ -83,30 +85,30 @@ class StaffDetail extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        for (var entry in staff.entries)
-                          if (entry.key != 'avatar')
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 8.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    '${convertKey(entry.key)}:',
-                                    style: GoogleFonts.ubuntu(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                  Text(
-                                    '${entry.key == 'salary' ? '******' : entry.value}',
-                                    style: GoogleFonts.ubuntu(
-                                      fontSize: 16,
-                                    ),
-                                    overflow: TextOverflow.visible,
-                                  ),
-                                ],
-                              ),
-                            ),
+                        // for (var entry in staff.khmer_)
+                        //   if (entry.key != 'avatar')
+                        //     Padding(
+                        //       padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        //       child: Row(
+                        //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        //         children: [
+                        //           Text(
+                        //             '${convertKey(entry.key)}:',
+                        //             style: GoogleFonts.ubuntu(
+                        //               fontSize: 16,
+                        //               fontWeight: FontWeight.w500,
+                        //             ),
+                        //           ),
+                        //           Text(
+                        //             '${entry.key == 'salary' ? '******' : entry.value}',
+                        //             style: GoogleFonts.ubuntu(
+                        //               fontSize: 16,
+                        //             ),
+                        //             overflow: TextOverflow.visible,
+                        //           ),
+                        //         ],
+                        //       ),
+                        //     ),
                       ],
                     ),
                   ),

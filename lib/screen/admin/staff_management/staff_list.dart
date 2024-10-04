@@ -456,8 +456,8 @@ class _StaffListState extends State<StaffList> {
                   final staff = stafflist[index];
                   return GestureDetector(
                     onTap: (){
-                      Navigator.of(context, rootNavigator: true).push( 
-                      MaterialPageRoute( builder: (BuildContext context) { return StaffDetail(staff: staff,); }, ));
+                      // Navigator.of(context, rootNavigator: true).push(
+                      // MaterialPageRoute( builder: (BuildContext context) { return StaffDetail(staff: ,); }, ));
                     },
                     child: Container(
                       margin: const EdgeInsets.only(bottom: 5.0),

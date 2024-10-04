@@ -601,8 +601,8 @@ class _StaffManagementState extends State<StaffManagement> with SingleTickerProv
                   final staff = filteredStaffList()[index];
                   return GestureDetector(
                     onTap: (){
-                      Navigator.of(context, rootNavigator: true).push( 
-                      MaterialPageRoute( builder: (BuildContext context) { return StaffDetail(staff: staff,); }, ));
+                      // Navigator.of(context, rootNavigator: true).push(
+                      // MaterialPageRoute( builder: (BuildContext context) { return StaffDetail(staff: staff,); }, ));
                     },
                     child: Container(
                       margin: const EdgeInsets.only(bottom: 5.0),

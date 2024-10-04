@@ -5,6 +5,7 @@ import 'package:attendance/screen/admin/student_management/setting/add_shift.dar
 import 'package:attendance/screen/admin/student_management/setting/add_time.dart';
 import 'package:attendance/screen/admin/student_management/setting/add_year.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -114,14 +115,10 @@ class _ShiftState extends State<Shift> {
                                 day!.name,
                                 style: GoogleFonts.notoSerifKhmer(fontSize: 18),
                               ),
-                              Text(
-                                '${day?.status}'.tr(),
-                                style: GoogleFonts.notoSerifKhmer(
-                                  fontSize: 18,
-                                  color: day.status.toLowerCase() == 'active'
-                                      ? Colors.green
-                                      : Colors.red,
-                                ),
+                              CupertinoSwitch(
+                                value:day.status=='Active'?true:false,
+                                trackColor: Colors.red,
+                                onChanged: (value) {},
                               ),
                             ],
                           ),

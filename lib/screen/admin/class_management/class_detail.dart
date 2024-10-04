@@ -5,6 +5,8 @@ import 'package:attendance/const/app_color.dart';
 import 'package:attendance/const/app_snackbar.dart';
 import 'package:attendance/screen/admin/class_management/add_student_to_class.dart';
 import 'package:attendance/screen/admin/student_management/class_qr_code.dart';
+import 'package:attendance/services/controller/classDivision_controller.dart';
+import 'package:attendance/services/model/classDivision_model.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,10 +14,13 @@ import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../const/app_dimension.dart';
+import '../../../services/controller/student_controller.dart';
+import '../../../services/model/student_model.dart';
 import '../../both_use.dart/qr_code.dart';
 class ClassDetail extends StatefulWidget {
+  final int id;
   final String name;
-  const ClassDetail({Key? key, required this.name}) : super(key: key);
+  const ClassDetail({Key? key, required this.name, required this.id}) : super(key: key);
 
   @override
   State<ClassDetail> createState() => _ClassDetailState();
@@ -25,9 +30,43 @@ class _ClassDetailState extends State<ClassDetail>with SingleTickerProviderState
   bool isShowSchedule = false;
   bool isShowLecturer = false;
   bool isShowStudent = false;
+  List<Student> studentList = [];
+  List classDivisions = [];
+  List<Student> filterStudents = [];
   TextStyle style = GoogleFonts.notoSerifKhmer(fontSize:18,fontWeight:FontWeight.w500,color:Colors.white);
   late AnimationController _animationController;
   late Animation<double> _scaleAnimation;
+
+  Future<void> fetchStudents() async {
+    StudentController studentController = StudentController('students');
+    try {
+      List<Student> students = await studentController.fetchStudents();
+      setState(() {
+        studentList = students;
+      });
+
+    } catch (e) {
+      print('Failed to load students: $e');
+    }
+  }
+  Future<void> fetchClassDivisions() async {
+    ClassDivisionController classDivisionController = ClassDivisionController('class-divisions');
+    try {
+      List<ClassDivision> classDivision = await classDivisionController.fetchClassDivisions(widget.id!);
+      setState(() {
+        classDivisions = classDivision.expand((cd) => cd.students).toList();
+      });
+
+      List<Student> filteredStudent = studentList.where((student) {
+        return classDivisions.contains(student.id);
+      }).toList();
+      filterStudents = filteredStudent;
+    } catch (e) {
+      print('Failed to load class divisions: $e');
+    }
+  }
+
+
   @override
   void initState() {
     super.initState();
@@ -35,7 +74,6 @@ class _ClassDetailState extends State<ClassDetail>with SingleTickerProviderState
       duration: const Duration(seconds: 4),
       vsync: this,
     );
-
     double beginScale = 1.0;
     double middleScale = 1.0;
     double endScale = 1.2;
@@ -74,7 +112,10 @@ class _ClassDetailState extends State<ClassDetail>with SingleTickerProviderState
     ]).animate(_animationController);
 
     _animationController.forward();
+    fetchStudents();
+    fetchClassDivisions();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,7 +141,7 @@ class _ClassDetailState extends State<ClassDetail>with SingleTickerProviderState
           GestureDetector(
             onTap: (){
               Navigator.push(context, MaterialPageRoute(builder: (context){
-                return AddStudentToClass();
+                return AddStudentToClass(classDivisionId: widget.id,);
               }));
             },
             child: Icon(Icons.add_box_outlined,color: Colors.white,size: 30),
@@ -315,51 +356,53 @@ class _ClassDetailState extends State<ClassDetail>with SingleTickerProviderState
           ),
           !isShowStudent? Container():SizedBox(height: 10,),
           if(isShowStudent)
-            SingleChildScrollView(
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: 3,
-                itemBuilder: (context,index){
-                  return GestureDetector(
-                    onTap: (){
-                      // Navigator.of(context, rootNavigator: true).push(
-                      //     MaterialPageRoute( builder: (BuildContext context) { return null; }, ));
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.only(bottom: 5.0,left: 8,right: 8),
-                      padding: const EdgeInsets.all(8.0),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      child: Row(
-                        children: [
-                          CircleAvatar(
-                            backgroundImage: AssetImage('assets/static_images/s_logo.jpg'),
-                          ),
-                          SizedBox(width: 15.0),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('student',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
+            if(filterStudents.isNotEmpty)
+              SingleChildScrollView(
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: filterStudents.length,
+                  itemBuilder: (context,index){
+                    Student student = filterStudents[index];
+                    return GestureDetector(
+                      onTap: (){
+                        // Navigator.of(context, rootNavigator: true).push(
+                        //     MaterialPageRoute( builder: (BuildContext context) { return null; }, ));
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.only(bottom: 5.0,left: 8,right: 8),
+                        padding: const EdgeInsets.all(8.0),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              backgroundImage: AssetImage('assets/static_images/s_logo.jpg'),
+                            ),
+                            SizedBox(width: 15.0),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(student.khmer_name,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                'gender',
-                              ),
-                            ],
-                          ),
-                          Spacer(),
-                          Icon(Icons.arrow_forward_ios_rounded, size: 20, color: Colors.grey,)
-                        ],
+                                Text(
+                                  'gender',
+                                ),
+                              ],
+                            ),
+                            Spacer(),
+                            Icon(Icons.arrow_forward_ios_rounded, size: 20, color: Colors.grey,)
+                          ],
+                        ),
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
-            ),
         ],
       ),
     );

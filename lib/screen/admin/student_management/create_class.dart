@@ -13,8 +13,7 @@ class _CreateClassState extends State<CreateClass> {
   Widget build(BuildContext context) {
     return BuildAppBar(title: 'create_class', bodyWidget: Column(
       children: [
-        
-      ],
-    ));
+
+      ]));
   }
 }
